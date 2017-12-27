@@ -26,8 +26,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {ProfileComponent} from './layout/profile/profile.component';
 import {PersonalInfoComponent} from './layout/profile/personal-info/personal-info.component';
-
-
+import {MatButtonModule, MatMenuModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -60,7 +59,9 @@ import {PersonalInfoComponent} from './layout/profile/personal-info/personal-inf
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

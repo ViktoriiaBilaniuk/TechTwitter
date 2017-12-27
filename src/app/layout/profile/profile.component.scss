@@ -3,9 +3,14 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
-.container {
+
+.body {
+  width: 100vw;
   text-align: center;
-  margin-top: 100px;
   margin-bottom: 0px;
   background-image: url("../../../assets/img/white_brick.jpg");
+  height: 600px;
+  app-header{
+    margin: 30px;
+  }
 }

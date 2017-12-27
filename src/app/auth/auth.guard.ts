@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    // console.log(this.authService.success);
+     console.log(this.authService.success);
     //return this.authService.success;
     return true;
   }

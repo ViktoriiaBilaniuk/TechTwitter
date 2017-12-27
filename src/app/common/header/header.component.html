@@ -1,3 +1,17 @@
-<div class="container">
-
+<div class="wrapper">
+  <div class="menu">
+    <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+      <i class="material-icons">menu</i>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>My wall</button>
+      <button mat-menu-item>Users</button>
+    </mat-menu>
+  </div>
+  <div class="logout">
+    <button mat-mini-fab color="primary">
+      <i class="material-icons">close</i>
+    </button>
+  </div>
 </div>
+

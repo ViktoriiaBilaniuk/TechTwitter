@@ -25,25 +25,24 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.authService.logIn(this.user.email, this.user.password)
       .then(value => {
-      this.authService.success = true;
-      console.log('User logined successfully!');
-    })
-      .catch(err => {
+        this.authService.success = true;
+
+        console.log('User logined successfully!');
+        this.authService.fetchUser(value.email)
+          .subscribe((user) => {
+            console.log(user[0].payload.val(), user[0].payload.key);
+          });
+
+        this.router.navigate(['../../profile']);
+
+      })
+      .catch ( err => {
         console.log('Something went wrong with user login - ', err.message);
         this.authService.isError = true;
         this.authService.errorMessage = err.message;
       });
 
-    this.authService.user.subscribe(data => {
-      this.authService.fetchUser(data.email);
-      console.log(data.email);
-    });
     this.user.email = this.user.password = '';
-    this.authService.fetchUser(this.testEmail)
-      .subscribe( (data) => {
-        console.log(data[0].payload.val(), data[0].payload.key);
-      });
-    this.router.navigate(['../../profile']);
   }
 
   logOut() {
