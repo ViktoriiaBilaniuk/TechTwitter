@@ -25,57 +25,26 @@ export class AuthService {
   }
 
   signUp(userModel: UserModel) {
-    this.http.post( environment.firebase.databaseURL + this.usersUrl + '.json', {
+    return this.http.post( environment.firebase.databaseURL + this.usersUrl + '.json', {
       'firstName': userModel.firstName,
       'lastName': userModel.lastName,
       'email': userModel.email,
       'password': userModel.password,
-    })
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log('Error in post user!');
-        }
-      );
+    });
   }
 
   signUpInFireAuth(email: string, password: string) {
     this.isError = false;
-    this.firebaseAuth
+    return this.firebaseAuth
       .auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('User signuped successfully!!', value);
-        this.success = true;
-      })
-      .catch(err => {
-        console.log('Something went wrong with user signup - ', err.message);
-        this.isError = true;
-        this.errorMessage = err.message;
-      });
+      .createUserWithEmailAndPassword(email, password);
   }
 
   logIn(email: string, password: string) {
     this.isError = false;
-    this.firebaseAuth
+    return this.firebaseAuth
       .auth
-      .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        this.success = true;
-        console.log('User logined successfully!');
-      })
-      .catch(err => {
-        console.log('Something went wrong with user login - ', err.message);
-        this.isError = true;
-        this.errorMessage = err.message;
-      });
-
-    this.user.subscribe(data => {
-      this.fetchUser(data.email);
-      console.log(data.email);
-    });
+      .signInWithEmailAndPassword(email, password);
   }
 
   fetchUser(email) {

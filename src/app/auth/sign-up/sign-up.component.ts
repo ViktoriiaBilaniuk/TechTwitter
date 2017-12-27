@@ -18,8 +18,25 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    this.authService.signUp(this.user);
-    this.authService.signUpInFireAuth(this.user.email, this.user.password);
+    this.authService.signUp(this.user)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error in post user!');
+        }
+      );
+    this.authService.signUpInFireAuth(this.user.email, this.user.password)
+      .then(value => {
+        console.log('User signuped successfully!!', value);
+        this.authService.success = true;
+      })
+      .catch(err => {
+        console.log('Something went wrong with user signup - ', err.message);
+        this.authService.isError = true;
+        this.authService.errorMessage = err.message;
+      });
     this.user.email = this.user.password = this.user.firstName = this.user.lastName = '';
   }
 

@@ -28,6 +28,7 @@ import {ProfileComponent} from './layout/profile/profile.component';
 import {PersonalInfoComponent} from './layout/profile/personal-info/personal-info.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,13 +42,13 @@ import {PersonalInfoComponent} from './layout/profile/personal-info/personal-inf
     HeaderComponent,
     UserPersonalInfoComponent,
     ProfileComponent,
-    PersonalInfoComponent,
     HeaderComponent,
     ProfileComponent,
     TimelineComponent,
     NewPostComponent,
     UserProfileComponent,
-    UsersComponent
+    UsersComponent,
+    PersonalInfoComponent
   ],
   imports: [
     BrowserModule,
