@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserModel} from '../../common/models/UserModel';
 
 @Component({
   selector: 'app-profile',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  user: UserModel;
 
   constructor() { }
 

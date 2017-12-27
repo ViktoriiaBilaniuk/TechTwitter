@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+$pink-trans: rgba(104, 12, 125, 0.2196078431372549);
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: Roboto;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.container{
+  width: 1200px;
+  margin: 0 auto;
+}

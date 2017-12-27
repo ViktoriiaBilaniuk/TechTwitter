@@ -3,20 +3,30 @@
     <div class="top">
       <p class="login">Registration</p>
     </div>
-    <form action="">
+    <div *ngIf="this.authService.isError"  class="errorMessage">
+      <p>{{this.authService.errorMessage}}</p>
+    </div>
+    <div *ngIf="this.authService.success"  class="successMessage">
+      <p>You have successfully registered!</p>
+    </div>
+    <form>
       <mat-form-field class="example-full-width">
         <input
           matInput
           type="email"
           placeholder="email"
-          required>
+          [(ngModel)]="user.email"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
           matInput
           type="password"
           placeholder="password"
-          required>
+          [(ngModel)]="user.password"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
@@ -24,7 +34,9 @@
           type="text"
           placeholder="First name"
           maxlength="30"
-          required>
+          [(ngModel)]="user.firstName"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
@@ -32,14 +44,20 @@
           type="text"
           placeholder="Last name"
           maxlength="30"
-          required>
+          [(ngModel)]="user.lastName"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
-      <button mat-raised-button color="primary">Sign up!</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="signUp()"
+      >Sign up!</button>
     </form>
     <div class="register-link">
       <p>Already have an account?</p>
       <div class="signIn">
-        <a>Sign in!</a>
+        <a [routerLink]="'../login'">Sign in!</a>
       </div>
     </div>
   </div>

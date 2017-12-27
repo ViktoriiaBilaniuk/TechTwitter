@@ -3,19 +3,41 @@
     <div class="top">
       <p class="login">Login</p>
     </div>
+    <div *ngIf="this.authService.isError"  class="errorMessage">
+      <p>You have entered the wrong password or login!</p>
+    </div>
+
     <form action="">
       <mat-form-field class="example-full-width">
-        <input  matInput type="email" placeholder="email" required>
+        <input
+          matInput
+          type="email"
+          placeholder="email"
+          [(ngModel)]="user.email"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input  matInput type="password" placeholder="password" required>
+        <input
+          matInput
+          type="password"
+          placeholder="password"
+          [(ngModel)]="user.password"
+          [ngModelOptions]="{standalone: true}"
+          >
       </mat-form-field>
-      <button mat-raised-button color="primary">Let me in!</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="logIn()"
+       >
+        <a>Let me in!</a>
+      </button>
     </form>
     <div class="register-link">
       <p>Don`t have an account yet?</p>
       <div class="signIn">
-        <a>Sign up!</a>
+        <a [routerLink]="'../sign-up'">Sign up!</a>
       </div>
     </div>
   </div>

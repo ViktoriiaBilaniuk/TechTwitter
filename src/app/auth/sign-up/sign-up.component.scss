@@ -24,6 +24,17 @@ $light-blue: #e2e5f4;
         color: $light-blue;
       }
     }
+    .errorMessage{
+      display: block;
+      background-color: #ff000036;
+      padding: 6px 0px;
+      margin-bottom: 19px;
+      color: #717171;
+    }
+    .successMessage{
+      @extend .errorMessage;
+      background-color: rgba(0, 150, 136, 0.2784313725490196);
+    }
     form{
       mat-form-field{
         display: block;
@@ -56,6 +67,7 @@ $light-blue: #e2e5f4;
 
       }
     }
+
 
   }
 }

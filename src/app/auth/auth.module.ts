@@ -3,8 +3,16 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
-import {MatButtonModule, MatCheckboxModule,MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import {AuthService} from './services/auth.service';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from './environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {FormsModule} from '@angular/forms';
+import {Http, HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import {UserModel} from '../common/models/UserModel';
 
 
 
@@ -24,12 +32,17 @@ const routes: Routes = [
     MatCheckboxModule,
     MatInputModule,
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FormsModule,
+    HttpModule
   ],
   declarations: [
     AuthComponent,
     LoginComponent,
     SignUpComponent
-  ]
+  ],
+  providers: [AuthService, HttpModule, UserModel],
 })
 export class AuthModule { }
