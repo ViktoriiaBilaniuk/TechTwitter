@@ -1,0 +1,16 @@
+$blue: #3f51b5;
+$light-blue: #e2e5f4;
+$blue-trans: rgba(63, 81, 181, 0.15);
+
+.body{
+  margin: 20px;
+  .new_post{
+    background-color: $blue-trans;
+  }
+  mat-form-field{
+    width: 95%;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+  }
+}
