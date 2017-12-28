@@ -3,9 +3,10 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import {HttpClient} from '@angular/common/http';
-import {UserModel} from '../../common/models/UserModel';
+import {UserModel} from '../models/UserModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import {environment} from '../environments/environment';
+import {environment} from '../../auth/environments/environment';
+
 
 
 
@@ -14,7 +15,6 @@ export class AuthService {
 
   usersUrl = '/users';
   user: Observable <firebase.User>;
-  currentUser: UserModel;
   errorMessage = '';
   isError = false;
   success = false;
