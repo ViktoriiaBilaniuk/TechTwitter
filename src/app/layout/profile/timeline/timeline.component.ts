@@ -17,7 +17,6 @@ export class TimelineComponent implements OnInit {
     this.authService.userValue.subscribe((user) => {
       this.currentUser = user;
       this.getPosts();
-      console.log(this.getPosts());
     });
   }
 
@@ -26,7 +25,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getPosts() {
-    this.profileService.fetchPosts(this.profileService.currentUser.userId)
+    this.profileService.fetchPosts(this.currentUser.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
       });

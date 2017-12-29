@@ -9,9 +9,12 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    console.log(this.authService);
-     // return this.authService.success;
-     return true;
+    return this.authService.success;
+/*    if (localStorage.getItem('CurrentUser')) {
+      return false;
+    } else {
+      return true;
+    }*/
   }
 
 

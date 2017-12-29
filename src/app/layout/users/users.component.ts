@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../common/services/profile.service';
-import {PostModel} from '../../common/models/PostModel';
 import {UserModel} from '../../common/models/UserModel';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -12,25 +11,29 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  usersUrl = '/users';
-  user: Observable <firebase.User>;
-  usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
-  allUsers: Observable<any>;
-  usersList: UserModel[] = [];
-  constructor(public profileService: ProfileService, private db: AngularFireDatabase) {
-    this.usersRef.snapshotChanges(['child_added'])
-      .subscribe(actions => {
-        this.usersList = actions.map((post) => post.payload.val());
-       /* actions.forEach(action => {
+  currentUser: UserModel;
+  users: any;
 
-          console.log(action.payload.val().firstName);
-        });*/
-      });
+  constructor(public profileService: ProfileService, private db: AngularFireDatabase, private http: HttpClient) {
+    this.currentUser = this.profileService.getCurrentUser();
   }
 
   ngOnInit() {
-    console.log(this.usersList);
+    this.profileService.getAllUsers()
+      .subscribe( (users) => {
+        this.users = users.map(user => {
+          return {
+            id: user.key,
+            ...user.payload.val()
+          };
+        });
+          console.log(this.users);
+        }
+      );
+  }
 
+  addNewFollower(followUserId) {
+    this.profileService.addNewFollower(this.currentUser, followUserId);
   }
 
 }

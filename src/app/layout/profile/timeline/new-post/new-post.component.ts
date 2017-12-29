@@ -24,7 +24,7 @@ export class NewPostComponent implements OnInit {
     })
       .subscribe(
         res => {
-          console.log(res);
+          console.log('Post success' + res);
         },
         err => {
           console.log('Error occured');

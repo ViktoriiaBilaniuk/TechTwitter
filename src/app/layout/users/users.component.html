@@ -1,8 +1,9 @@
-<p>
-  users works!
-</p>
+
 <div class="body">
   <ul class="users_list">
-   // <li *ngFor="let item of allUsers" class="user"> {{item}}</li>
+    <li *ngFor="let item of users" class="user">
+      <p>{{item.firstName}} {{item.lastName}}</p>
+      <button class="follow" (click)="addNewFollower(item.id)">Follow</button>
+    </li>
   </ul>
 </div>

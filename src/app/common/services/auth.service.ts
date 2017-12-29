@@ -38,8 +38,7 @@ export class AuthService {
       'firstName': userModel.firstName,
       'lastName': userModel.lastName,
       'email': userModel.email,
-      'password': userModel.password,
-      'followed': userModel.followed
+      'followers': [1,2,3]
     });
   }
 
@@ -62,13 +61,16 @@ export class AuthService {
   }
 
   logOut() {
-    this.firebaseAuth
+    localStorage.removeItem('CurrentUser');
+    /*this.firebaseAuth
       .auth
-      .signOut();
+      .signOut();*/
   }
   getAllUsers() {
-    return this.usersRef.snapshotChanges();
+    return this.db.list(this.usersUrl);
+    //return this.usersRef.snapshotChanges();
   }
+
 
 }
 

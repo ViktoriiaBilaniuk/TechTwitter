@@ -47,8 +47,5 @@ export class LoginComponent implements OnInit {
     this.user.email = this.user.password = '';
   }
 
-  logOut() {
-    this.authService.logOut();
-  }
 
 }

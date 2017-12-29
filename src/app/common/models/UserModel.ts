@@ -4,5 +4,5 @@ export class UserModel {
   lastName: string;
   email: string;
   password: string;
-  followed: UserModel[];
+  followers: string[];
 }
