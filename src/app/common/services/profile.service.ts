@@ -3,19 +3,19 @@ import {UserModel} from '../models/UserModel';
 import {PostModel} from '../models/PostModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Subject} from 'rxjs/Subject';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class ProfileService {
-  currentUser: UserModel;
   usersUrl = '/users';
-  postsOfCurrentUser: PostModel;
   postsUrl = '/walls';
   postsRef: AngularFireList<PostModel> = this.db.list<PostModel>(this.postsUrl);
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
   userValue = new Subject();
   allUsers: UserModel[] = [];
+  currentUser: UserModel;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private authService: AuthService) {
     // this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
   }
    getCurrentUser() {
@@ -28,7 +28,7 @@ export class ProfileService {
 
   getAllUsers() {
     return this.db.list(this.usersUrl);
-    //return this.usersRef.snapshotChanges();
+    // return this.usersRef.snapshotChanges();
   }
 
 

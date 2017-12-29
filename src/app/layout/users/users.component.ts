@@ -21,9 +21,7 @@ export class UsersComponent implements OnInit {
     this.usersRef.snapshotChanges(['child_added'])
       .subscribe(actions => {
         actions.forEach(action => {
-          console.log(action.type);
-          console.log(action.key);
-          console.log(action.payload.val());
+          console.log(action.payload.val().firstName);
         });
       });
   }
