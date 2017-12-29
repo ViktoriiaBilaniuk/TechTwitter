@@ -1,0 +1,36 @@
+$pink-trans:rgba(104, 12, 125, 0.2196078431372549);
+$white-trans: rgba(255, 255, 255, 0.66);
+$blue: #3f51b5;
+$light-blue: #e2e5f4;
+$gray: rgb(222, 222, 222);
+
+.body{
+  .posts{
+    mat-card{
+      .user_info{
+        display: flex;
+        justify-content: baseline;
+        .image{
+          background-color: $gray;
+          border-radius: 50%;
+          width: 39px;
+          height: 39px;
+        }
+        .info{
+          padding-left: 20px;
+          .name{
+
+          }
+          .date{
+
+          }
+        }
+      }
+      .post{
+
+      }
+    }
+
+  }
+
+}

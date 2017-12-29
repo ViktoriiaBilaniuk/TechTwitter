@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
-import {AuthService} from './services/auth.service';
-import {Observable} from 'rxjs/Observable';
+import {CanActivate} from '@angular/router';
+import {AuthService} from '../common/services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService) {
   }
 
   canActivate(): boolean {
-     console.log(this.authService.success);
-    //return this.authService.success;
-    return true;
+    return this.authService.success;
+/*    if (localStorage.getItem('CurrentUser')) {
+      return false;
+    } else {
+      return true;
+    }*/
   }
 
 

@@ -1,3 +1,22 @@
-<p>
-  new-post works!
-</p>
+
+<div class="body">
+  <div class="new_post">
+    <mat-form-field class="example-full-width">
+      <textarea
+        matInput
+        #message
+        maxlength="256"
+        [(ngModel)]="currentPost.text"
+        placeholder="Any news?">
+      </textarea>
+      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    <button
+      mat-fab
+      color="primary"
+      (click)="postText()"
+    >Post</button>
+
+  </div>
+</div>
+

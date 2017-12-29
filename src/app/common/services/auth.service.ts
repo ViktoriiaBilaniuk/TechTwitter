@@ -3,9 +3,11 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import {HttpClient} from '@angular/common/http';
-import {UserModel} from '../../common/models/UserModel';
+import {UserModel} from '../models/UserModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import {environment} from '../environments/environment';
+import {environment} from '../../auth/environments/environment';
+import {Subject} from 'rxjs/Subject';
+
 
 
 
@@ -14,22 +16,29 @@ export class AuthService {
 
   usersUrl = '/users';
   user: Observable <firebase.User>;
-  currentUser: UserModel;
   errorMessage = '';
   isError = false;
   success = false;
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
+  userValue: Subject<any>;
 
   constructor(private firebaseAuth: AngularFireAuth, public http: HttpClient, private db: AngularFireDatabase) {
+    this.userValue = new Subject();
     this.user = firebaseAuth.authState;
   }
+
+  set currentUser(value) {
+    this.userValue.next(value);
+    localStorage.setItem('CurrentUser', JSON.stringify(value));
+  }
+
 
   signUp(userModel: UserModel) {
     return this.http.post( environment.firebase.databaseURL + this.usersUrl + '.json', {
       'firstName': userModel.firstName,
       'lastName': userModel.lastName,
       'email': userModel.email,
-      'password': userModel.password,
+      'followers': [1,2,3]
     });
   }
 
@@ -52,13 +61,16 @@ export class AuthService {
   }
 
   logOut() {
-    this.firebaseAuth
+    localStorage.removeItem('CurrentUser');
+    /*this.firebaseAuth
       .auth
-      .signOut();
+      .signOut();*/
   }
   getAllUsers() {
-    return this.usersRef.snapshotChanges();
+    return this.db.list(this.usersUrl);
+    //return this.usersRef.snapshotChanges();
   }
+
 
 }
 

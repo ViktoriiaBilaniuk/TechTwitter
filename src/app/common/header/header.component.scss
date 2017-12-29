@@ -3,14 +3,16 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
-.wrapper{
+.body{
   width: 1200px;
   margin: 0 auto;
-  background-color: $white-trans;
   display: flex;
-  justify-content: space-between;
-  .menu, .logout{
-    padding: 20px;
+  justify-content: baseline;
+  .menu{
+    padding-left: 20px;
+  }
+  .logout{
+    padding-left: 8px;
 
   }
 }

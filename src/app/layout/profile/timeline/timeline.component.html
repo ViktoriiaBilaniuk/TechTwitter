@@ -1,3 +1,22 @@
-<p>
-  timeline works!
-</p>
+<div class="body">
+  <app-new-post></app-new-post>
+
+    <div class="posts"  *ngFor="let item of postsOfCurrentUser">
+    <mat-card>
+      <div class="user_info">
+        <div class="image">
+
+        </div>
+        <div class="info">
+          <p class="name">{{profileService.getCurrentUser().firstName}} {{profileService.getCurrentUser().lastName}}</p>
+          <p class="date">{{item.createdAt}}</p>
+        </div>
+
+      </div>
+      <div class="post">
+        <p>{{item.text}}</p>
+      </div>
+    </mat-card>
+  </div>
+</div>
+

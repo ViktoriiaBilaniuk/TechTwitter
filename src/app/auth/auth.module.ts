@@ -5,7 +5,7 @@ import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import {AuthService} from './services/auth.service';
+import {AuthService} from '../common/services/auth.service';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from './environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
@@ -43,6 +43,6 @@ const routes: Routes = [
     LoginComponent,
     SignUpComponent
   ],
-  providers: [AuthService, HttpModule, UserModel],
+  providers: [HttpModule, UserModel],
 })
 export class AuthModule { }
