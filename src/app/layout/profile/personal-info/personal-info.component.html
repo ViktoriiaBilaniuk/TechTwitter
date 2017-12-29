@@ -4,7 +4,7 @@
       <input type="file"  #file (change)="uploadPhoto($event)"/>
     </div>
   </div>
-  <div class="name_email">
+  <div class="name_email" *ngIf="currentUser">
     <div class="name">
       <p>{{currentUser.firstName}} {{currentUser.lastName}}</p>
     </div>

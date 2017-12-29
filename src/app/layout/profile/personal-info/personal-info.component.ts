@@ -16,7 +16,6 @@ export class PersonalInfoComponent implements OnInit {
   constructor(public profileService: ProfileService, public authService: AuthService) {
     this.authService.userValue.subscribe((user) => {
       this.currentUser = user;
-      console.log(user); // this will happen on every change
     });
   }
 

@@ -16,17 +16,20 @@ export class UsersComponent implements OnInit {
   user: Observable <firebase.User>;
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
   allUsers: Observable<any>;
-
+  usersList: UserModel[] = [];
   constructor(public profileService: ProfileService, private db: AngularFireDatabase) {
     this.usersRef.snapshotChanges(['child_added'])
       .subscribe(actions => {
-        actions.forEach(action => {
+        this.usersList = actions.map((post) => post.payload.val());
+       /* actions.forEach(action => {
+
           console.log(action.payload.val().firstName);
-        });
+        });*/
       });
   }
 
   ngOnInit() {
+    console.log(this.usersList);
 
   }
 

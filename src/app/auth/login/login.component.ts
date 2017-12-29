@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     this.authService.logIn(this.user.email, this.user.password)
       .then(value => {
         this.authService.success = true;
-        console.log(this.authService);
         console.log('User logined successfully!');
         this.authService.fetchUser(value.email)
           .subscribe((user) => {
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
             this.authService.currentUser = this.currentUser;
           });
         this.router.navigate(['../../profile']);
-        // console.log(this.authService);
       })
       .catch ( err => {
         console.log('Something went wrong with user login - ', err.message);
