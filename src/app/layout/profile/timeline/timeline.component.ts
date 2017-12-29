@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getPosts() {
-    this.profileService.fetchPosts(this.profileService.currentUser.userId)
+    this.profileService.fetchPosts(this.profileService.getCurrentUser().userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
         // this.postsOfCurrentUser[0] = posts[0].payload.val();

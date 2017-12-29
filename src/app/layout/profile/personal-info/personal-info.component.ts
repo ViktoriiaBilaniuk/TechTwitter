@@ -14,14 +14,11 @@ export class PersonalInfoComponent implements OnInit {
   image: ImageBitmap;
 
   constructor(public profileService: ProfileService, public authService: AuthService) {
-    this.authService.userValue.subscribe((user) => {
-      console.log('me here');
-      console.log(user); // this will happen on every change
-    });
+
   }
 
   ngOnInit() {
-    // this.currentUser = this.profileService.getCurrentUser();
+     this.currentUser = this.profileService.getCurrentUser();
   }
 
 
