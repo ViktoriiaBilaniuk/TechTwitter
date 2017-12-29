@@ -1,0 +1,26 @@
+$pink-trans:rgba(104, 12, 125, 0.2196078431372549);
+$white-trans: rgba(255, 255, 255, 0.66);
+$blue: #3f51b5;
+$light-blue: #e2e5f4;
+$blue-trans: rgba(63, 81, 181, 0.15);
+
+.friends{
+  background-color: $blue-trans;
+  color: $light-blue;
+  padding: 20px;
+  margin: 20px;
+  margin-bottom: 0px;
+}
+
+.body{
+  border: 1px solid #ababab;
+  border-top: none;
+  padding-bottom: 20px;
+  margin: 20px;
+  margin-top: 0px;
+
+
+  app-friends-item{
+    margin: 10px 0;
+  }
+}

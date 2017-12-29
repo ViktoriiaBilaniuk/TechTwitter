@@ -1,15 +1,18 @@
 <div class="personal">
   <div class="photo_name">
-    <div class="photo">
-
+    <div class="photo" (click)="file.click()">
+      <input type="file"  #file (change)="uploadPhoto($event)"/>
     </div>
   </div>
   <div class="name_email">
     <div class="name">
-      <p></p>
+      <p>{{currentUser.firstName}} {{currentUser.lastName}}</p>
     </div>
     <div class="email">
-      <p></p>
+      <p>{{currentUser.email}}</p>
     </div>
+  </div>
+  <div class="posts">
+    <p>13 posts</p>
   </div>
 </div>

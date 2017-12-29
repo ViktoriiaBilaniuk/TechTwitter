@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {UserModel} from '../models/UserModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {environment} from '../../auth/environments/environment';
+import {Subject} from 'rxjs/Subject';
 
 
 
@@ -19,9 +20,17 @@ export class AuthService {
   isError = false;
   success = false;
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
+  userValue = new Subject();
 
   constructor(private firebaseAuth: AngularFireAuth, public http: HttpClient, private db: AngularFireDatabase) {
     this.user = firebaseAuth.authState;
+  }
+
+
+  set currentUser(value) {
+    console.log(value);
+    this.userValue.next(value);
+    localStorage.setItem('CurrentUser', JSON.stringify(value));
   }
 
   signUp(userModel: UserModel) {
