@@ -20,9 +20,16 @@ export class AuthService {
   isError = false;
   success = false;
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
+  userValue: Subject<any>;
 
   constructor(private firebaseAuth: AngularFireAuth, public http: HttpClient, private db: AngularFireDatabase) {
+    this.userValue = new Subject();
     this.user = firebaseAuth.authState;
+  }
+
+  set currentUser(value) {
+    this.userValue.next(value);
+    localStorage.setItem('CurrentUser', JSON.stringify(value));
   }
 
 
@@ -32,6 +39,7 @@ export class AuthService {
       'lastName': userModel.lastName,
       'email': userModel.email,
       'password': userModel.password,
+      'followed': userModel.followed
     });
   }
 

@@ -6,13 +6,14 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ProfileService {
-   currentUser: UserModel;
+  currentUser: UserModel;
   usersUrl = '/users';
   postsOfCurrentUser: PostModel;
   postsUrl = '/walls';
   postsRef: AngularFireList<PostModel> = this.db.list<PostModel>(this.postsUrl);
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
   userValue = new Subject();
+  allUsers: UserModel[] = [];
 
   constructor(private db: AngularFireDatabase) {
     // this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
@@ -26,7 +27,8 @@ export class ProfileService {
   }
 
   getAllUsers() {
-    return this.usersRef.snapshotChanges();
+    return this.db.list(this.usersUrl);
+    //return this.usersRef.snapshotChanges();
   }
 
 

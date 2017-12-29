@@ -34,7 +34,7 @@ export class NewPostComponent implements OnInit {
   }
 
   initCurrentPost() {
-    this.currentPost.userId = this.profileService.currentUser.userId;
+    this.currentPost.userId = this.profileService.getCurrentUser().userId;
     this.currentPost.createdAt = this.getCurrentTime();
   }
   getCurrentTime() {

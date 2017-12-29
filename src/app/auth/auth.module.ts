@@ -43,6 +43,6 @@ const routes: Routes = [
     LoginComponent,
     SignUpComponent
   ],
-  providers: [AuthService, HttpModule, UserModel],
+  providers: [HttpModule, UserModel],
 })
 export class AuthModule { }
