@@ -31,6 +31,9 @@ export class ProfileService {
   fetchPosts(userId) {
     return this.db.list<PostModel>(this.postsUrl, ref => ref.orderByChild('userId').equalTo(userId)).snapshotChanges();
   }
+  getFriend(friendId) {
+    return this.db.object(`users/${friendId}`).valueChanges();
+  }
 
   getAllUsers(): Observable<any> {
     return this.db.list(this.usersUrl).snapshotChanges();
@@ -42,9 +45,14 @@ export class ProfileService {
       user.followers = [];
     }
     user.followers.push(followUserId);
-    items.update(user.userId, { followers : user.followers});
+    console.log(user.userId);
+    items.update(user.userId, { followers : user.followers})
+      .then((item) => {
+        console.log(item);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
-
 }
 

@@ -13,16 +13,12 @@ export class TimelineComponent implements OnInit {
   postsOfCurrentUser: PostModel[] = [];
   currentUser: UserModel;
 
-  constructor(public profileService: ProfileService, private authService: AuthService) {
-    this.authService.userValue.subscribe((user) => {
-      this.currentUser = user;
-      this.getPosts();
-    });
+  constructor(public profileService: ProfileService) {
+    this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
+    this.getPosts();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   getPosts() {
     this.profileService.fetchPosts(this.currentUser.userId)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {UserModel} from '../../../../common/models/UserModel';
+import {debug} from 'util';
 
 @Component({
   selector: 'app-friends-item',
@@ -9,29 +10,27 @@ import {UserModel} from '../../../../common/models/UserModel';
   styleUrls: ['./friends-item.component.scss']
 })
 export class FriendsItemComponent implements OnInit {
-  currentUser: UserModel;
+  currentUser: any;
+  friendsOfCurrentUser: any[] = [];
 
-  constructor(public profileService: ProfileService, private http: HttpClient) { }
+  constructor(public profileService: ProfileService, private http: HttpClient) {
+    this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
+    this.getFriends();
+  }
 
   ngOnInit() {
   }
-  followUser() {
-    this.init();
-    this.http.post('https://techtwitter2018.firebaseio.com/follows.json', {
-      userId: this.currentUser.userId
-    })
-      .subscribe(
-        res => {
-          console.log('User fallowed!' +  res);
-        },
-        err => {
-          console.log('Error on follow user');
-        }
-      );
-  }
-  init() {
-    this.currentUser = this.profileService.getCurrentUser();
-  }
 
-
+  getFriends() {
+    console.log(this.currentUser.followers);
+    this.currentUser.followers.forEach(item => {
+      console.log(item);
+       this.profileService.getFriend('-L1xnYoWUpb_36WbYjMe')
+         .subscribe((friend) => {
+             console.log(friend);
+             this.friendsOfCurrentUser.push(friend);
+           }
+         );
+    });
+  }
 }

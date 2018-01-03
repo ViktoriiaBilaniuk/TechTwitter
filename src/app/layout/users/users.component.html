@@ -1,9 +1,13 @@
-
 <div class="body">
-  <ul class="users_list">
-    <li *ngFor="let item of users" class="user">
-      <p>{{item.firstName}} {{item.lastName}}</p>
-      <button class="follow" (click)="addNewFollower(item.id)">Follow</button>
-    </li>
-  </ul>
+  <div class="container wrapper">
+    <app-header></app-header>
+    <div class="user_list">
+      <mat-grid-list cols="3" rowHeight="3:1">
+        <mat-grid-tile *ngFor="let item of users" class="user">
+          <p>{{item.firstName}} {{item.lastName}}</p>
+          <button class="follow" (click)="addNewFollower(item.id)">Follow</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
 </div>

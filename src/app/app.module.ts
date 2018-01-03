@@ -25,7 +25,10 @@ import {AuthGuard} from './auth/auth.guard';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {ProfileComponent} from './layout/profile/profile.component';
 import {PersonalInfoComponent} from './layout/profile/personal-info/personal-info.component';
-import {MatButtonModule, MatCardModule, MatInputModule, MatMenuModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatInputModule, MatListModule,
+  MatMenuModule
+} from '@angular/material';
 import {ProfileService} from './common/services/profile.service';
 
 
@@ -62,7 +65,10 @@ import {ProfileService} from './common/services/profile.service';
     MatMenuModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatListModule,
+    MatGridListModule
   ],
   providers: [AuthService, AuthGuard, ProfileService],
   bootstrap: [AppComponent]
