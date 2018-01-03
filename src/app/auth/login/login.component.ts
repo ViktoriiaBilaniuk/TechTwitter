@@ -35,8 +35,10 @@ export class LoginComponent implements OnInit {
             this.currentUser.userId = user[0].payload.key;
             // localStorage.setItem('CurrentUser', JSON.stringify(this.currentUser));
             this.authService.currentUser = this.currentUser;
+            setTimeout(() => {
+              this.router.navigate(['../../profile']);
+            }, 0);
           });
-        this.router.navigate(['../../profile']);
       })
       .catch ( err => {
         console.log('Something went wrong with user login - ', err.message);

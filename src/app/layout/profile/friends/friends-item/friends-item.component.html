@@ -1,14 +1,8 @@
 <div class="body">
-
-  <mat-card>
-    <div class="image">
-
-    </div>
+  <mat-card *ngFor="let item of friendsOfCurrentUser">
+    <div class="image"></div>
     <div class="name">
-      <p>Olena Ivaniuk</p>
+      <p>{{item.firstName}} {{item.lastName}}</p>
     </div>
-
   </mat-card>
-
-
 </div>

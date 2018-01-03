@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
             ...user.payload.val()
           };
         });
-          console.log(this.users);
+         console.log(this.users);
         }
       );
   }

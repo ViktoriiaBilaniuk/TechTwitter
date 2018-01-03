@@ -6,7 +6,6 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 .body{
   background-color: white;
 
-
   mat-card{
     width: 100%;
     display: flex;
@@ -17,14 +16,10 @@ $blue-trans: rgba(63, 81, 181, 0.15);
       border-radius: 50%;
       width: 39px;
       height: 39px;
-
     }
     .name{
       padding: 15px 0;
       padding-left: 10px;
-
     }
-
   }
-
 }
