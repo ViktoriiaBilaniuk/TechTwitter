@@ -1,0 +1,34 @@
+$pink-trans:rgba(104, 12, 125, 0.2196078431372549);
+$white-trans: rgba(255, 255, 255, 0.66);
+$blue: #3f51b5;
+$light-blue: #e2e5f4;
+
+.personal{
+  .photo_name{
+    .photo{
+      background-color: rgba(176, 179, 195, 0.4117647058823529);
+      background-image: url("../../../../assets/img/user-icon-placeholder.png");
+      background-size: contain;
+      border-radius: 50%;
+      height: 180px;
+      width: 180px;
+      margin: 0 auto;
+      border: white;
+      border-width: 5px;
+      border-style: inset;
+      box-shadow: 0px 8px 20px 0px rgba(128, 128, 128, 0.611764705882353);
+    }
+  }
+  .name_email{
+    padding-top: 30px;
+    .name{
+      font-size: 40px;
+    }
+  }
+  .posts{
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+}

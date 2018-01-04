@@ -5,11 +5,9 @@ $light-blue: #e2e5f4;
 
 
 .body {
-  width: 100vw;
   text-align: center;
   margin-bottom: 0px;
   background-image: url("../../../assets/img/white_brick.jpg");
-  height: 1000px;
   app-header{
     margin: 30px;
   }
@@ -18,11 +16,9 @@ $light-blue: #e2e5f4;
     justify-content: space-between;
     app-friends{
       width: 30%;
-      height: 600px;
     }
     app-timeline{
       width: 66%;
-      height: 600px;
     }
   }
 

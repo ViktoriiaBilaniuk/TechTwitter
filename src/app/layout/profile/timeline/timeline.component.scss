@@ -7,6 +7,7 @@ $gray: rgb(222, 222, 222);
 .body{
   .posts{
     mat-card{
+      margin: 0px 20px;
       .user_info{
         display: flex;
         justify-content: baseline;

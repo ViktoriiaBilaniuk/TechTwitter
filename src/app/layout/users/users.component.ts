@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../common/services/profile.service';
 import {UserModel} from '../../common/models/UserModel';
 import {AngularFireDatabase} from 'angularfire2/database';
-import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -13,8 +12,9 @@ import {HttpClient} from '@angular/common/http';
 export class UsersComponent implements OnInit {
   currentUser: UserModel;
   users: any;
+  buttonText = 'Follow';
 
-  constructor(public profileService: ProfileService, private db: AngularFireDatabase, private http: HttpClient) {
+  constructor(public profileService: ProfileService) {
     this.currentUser = this.profileService.getCurrentUser();
   }
 
@@ -27,7 +27,6 @@ export class UsersComponent implements OnInit {
             ...user.payload.val()
           };
         });
-          console.log(this.users);
         }
       );
   }
@@ -35,5 +34,7 @@ export class UsersComponent implements OnInit {
   addNewFollower(followUserId) {
     this.profileService.addNewFollower(this.currentUser, followUserId);
   }
+
+
 
 }

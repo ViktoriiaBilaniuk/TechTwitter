@@ -9,12 +9,13 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    return this.authService.success;
-/*    if (localStorage.getItem('CurrentUser')) {
-      return false;
-    } else {
+    //return true;
+   // return this.authService.success;
+    if (localStorage.getItem('CurrentUser')) {
       return true;
-    }*/
+    } else {
+      return false;
+    }
   }
 
 

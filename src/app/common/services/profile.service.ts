@@ -24,12 +24,19 @@ export class ProfileService {
   constructor(private db: AngularFireDatabase, private authService: AuthService, public http: HttpClient) {
     // this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
   }
-   getCurrentUser() {
-     return JSON.parse(localStorage.getItem('CurrentUser'));
+   getCurrentUser(userId) {
+     // return JSON.parse(localStorage.getItem('CurrentUser'));
+     return this.db.object(`users/${userId}`).valueChanges();
   }
 
   fetchPosts(userId) {
     return this.db.list<PostModel>(this.postsUrl, ref => ref.orderByChild('userId').equalTo(userId)).snapshotChanges();
+  }
+  getFriend(friendId) {
+    return this.db.object(`users/${friendId}`).valueChanges();
+  }
+  getFriends(friendArray) {
+    return friendArray.map((id) => this.getFriend(id));
   }
 
   getAllUsers(): Observable<any> {
@@ -42,9 +49,18 @@ export class ProfileService {
       user.followers = [];
     }
     user.followers.push(followUserId);
-    items.update(user.userId, { followers : user.followers});
+    items.update(user.userId, { followers : user.followers})
+      .then((item) => {
+        // console.log(item);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
+  removeFriend(currentUserId, indexOfUser) {
+    const itemsRef = this.db.list('/users/' + currentUserId + '/followers');
+    itemsRef.remove('' + indexOfUser);
+  }
 
 }
 

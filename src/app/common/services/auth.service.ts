@@ -7,6 +7,7 @@ import {UserModel} from '../models/UserModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {environment} from '../../auth/environments/environment';
 import {Subject} from 'rxjs/Subject';
+import {Router} from '@angular/router';
 
 
 
@@ -22,7 +23,7 @@ export class AuthService {
   usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
   userValue: Subject<any>;
 
-  constructor(private firebaseAuth: AngularFireAuth, public http: HttpClient, private db: AngularFireDatabase) {
+  constructor(private firebaseAuth: AngularFireAuth, public http: HttpClient, private db: AngularFireDatabase, public router: Router) {
     this.userValue = new Subject();
     this.user = firebaseAuth.authState;
   }
@@ -38,7 +39,7 @@ export class AuthService {
       'firstName': userModel.firstName,
       'lastName': userModel.lastName,
       'email': userModel.email,
-      'followers': [1,2,3]
+      'followers': []
     });
   }
 
@@ -62,13 +63,10 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('CurrentUser');
-    /*this.firebaseAuth
-      .auth
-      .signOut();*/
+    this.router.navigate(['../../auth/login']);
   }
   getAllUsers() {
     return this.db.list(this.usersUrl);
-    //return this.usersRef.snapshotChanges();
   }
 
 

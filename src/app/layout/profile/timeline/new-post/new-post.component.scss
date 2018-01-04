@@ -4,8 +4,10 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 
 .body{
   margin: 20px;
+  margin-bottom: 0px;
   .new_post{
     background-color: $blue-trans;
+    padding-bottom: 20px;
   }
   mat-form-field{
     width: 95%;
