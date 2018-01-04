@@ -3,6 +3,16 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 $blue-trans: rgba(63, 81, 181, 0.15);
+.blur {
+  position: fixed;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.69);
+}
 .body{
   background-color: white;
 
@@ -11,15 +21,37 @@ $blue-trans: rgba(63, 81, 181, 0.15);
     display: flex;
     justify-content: baseline;
     padding: 10px;
+
     .image{
       background-color: $blue-trans;
       border-radius: 50%;
-      width: 39px;
-      height: 39px;
+      width: 49px;
     }
     .name{
       padding: 15px 0;
       padding-left: 10px;
+    }
+    .mat-icon-button{
+      position: absolute;
+      right: 5px;
+      .material-icons{
+        color: rgba(63, 81, 181, 0.5882352941176471);
+        height: 20px;
+      }
+    }
+    .confirm_window{
+      position: fixed;
+      width: 300px;
+      height: 100px;
+      top: 187px;
+      padding: 20px;
+      left: 615px;
+      z-index: 2;
+      background-color: rgb(218, 220, 227);
+      box-shadow: 7px 7px 8px 0px #b0b0b030;
+      p{
+        padding-bottom: 10px;
+      }
     }
   }
 }

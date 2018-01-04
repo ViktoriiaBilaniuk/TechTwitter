@@ -7,12 +7,43 @@ $light-blue: #e2e5f4;
   text-align: center;
   margin-bottom: 0px;
   background-image: url("../../../assets/img/white_brick.jpg");
+  .wrapper{
+    padding-bottom: 50px;
+  }
   app-header {
     margin: 30px;
   }
   .user_list{
     margin: 20px;
+    margin-top: 50px;
     mat-grid-list{
+      mat-grid-tile{
+        background-color: white;
+        box-shadow: 7px 7px 8px 0px #b0b0b030;
+        .personal-info{
+          height: 100%;
+          .image{
+            background-color: $light-blue;
+            width: 115px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            p{
+              font-size: 37px;
+              text-shadow: 2px 2px 4px #a7a7a7;
+              color: rgba(63, 81, 181, 0.38);;
+            }
+          }
+          p{
+            line-height: 117px;
+          }
+        }
+        button{
+          position: absolute;
+          right: 5px;
+          bottom: 5px;
+        }
+      }
 
     }
   }

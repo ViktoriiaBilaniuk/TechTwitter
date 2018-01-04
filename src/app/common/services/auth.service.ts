@@ -39,7 +39,7 @@ export class AuthService {
       'firstName': userModel.firstName,
       'lastName': userModel.lastName,
       'email': userModel.email,
-      'followers': [1,2,3]
+      'followers': []
     });
   }
 
@@ -64,13 +64,9 @@ export class AuthService {
   logOut() {
     localStorage.removeItem('CurrentUser');
     this.router.navigate(['../../auth/login']);
-    /*this.firebaseAuth
-      .auth
-      .signOut();*/
   }
   getAllUsers() {
     return this.db.list(this.usersUrl);
-    //return this.usersRef.snapshotChanges();
   }
 
 

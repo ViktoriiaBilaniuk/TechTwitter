@@ -2,10 +2,21 @@
   <div class="container wrapper">
     <app-header></app-header>
     <div class="user_list">
-      <mat-grid-list cols="3" rowHeight="3:1">
+      <mat-grid-list cols="3" rowHeight="3:1" gutterSize="20px">
         <mat-grid-tile *ngFor="let item of users" class="user">
-          <p>{{item.firstName}} {{item.lastName}}</p>
-          <button class="follow" (click)="addNewFollower(item.id)">Follow</button>
+          <div class="personal-info">
+            <div class="image">
+              <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
+            </div>
+            <p>{{item.firstName}} {{item.lastName}}</p>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            class="follow"
+            (click)="addNewFollower(item.id)"            >
+            {{buttonText}}
+          </button>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
