@@ -1,6 +1,8 @@
 <div class="body">
   <app-new-post></app-new-post>
-
+  <mat-card class="dont-have-posts" *ngIf="noPosts">
+    <p>You don`t have posts yet...</p>
+  </mat-card>
   <div class="posts"  *ngFor="let item of postsOfCurrentUser ">
     <mat-card>
       <div class="user_info">
@@ -11,7 +13,6 @@
           <p class="name">{{currentUser.firstName}} {{currentUser.lastName}}</p>
           <p class="date">{{item.day}}  {{item.month}} at {{item.hour}}</p>
         </div>
-
       </div>
       <div class="post">
         <p>{{item.text}}</p>

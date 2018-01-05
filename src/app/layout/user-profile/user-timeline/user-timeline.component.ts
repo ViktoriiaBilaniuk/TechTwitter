@@ -30,12 +30,13 @@ export class UserTimelineComponent implements OnInit {
   }
 
   getPosts() {
-    this.noPosts = false;
     this.profileService.fetchPosts(this.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
         if (this.postsOfCurrentUser.length === 0) {
           this.noPosts = true;
+        } else {
+          this.noPosts = false;
         }
       });
   }
