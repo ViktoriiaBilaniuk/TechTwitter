@@ -11,14 +11,21 @@ import {Router} from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
   user = new UserModel;
+  disable = true;
 
 
   constructor(public authService: AuthService, public router: Router) { }
 
   ngOnInit() {
+
   }
 
-  signUp() {
+  signUp(form) {
+    if (form.valid) {
+      console.log('valid');
+    } else {
+      console.log('invalid');
+    }
     this.authService.signUp(this.user)
       .subscribe(
         res => {
@@ -32,6 +39,9 @@ export class SignUpComponent implements OnInit {
       .then(value => {
         console.log('User signuped successfully!!', value);
         this.authService.success = true;
+        setTimeout(() => {
+          this.router.navigate(['../login']);
+        }, 2000);
       })
       .catch(err => {
         console.log('Something went wrong with user signup - ', err.message);
@@ -39,9 +49,5 @@ export class SignUpComponent implements OnInit {
         this.authService.errorMessage = err.message;
       });
     this.user.email = this.user.password = this.user.firstName = this.user.lastName = '';
-    setTimeout(() => {
-      this.router.navigate(['../login']);
-    }, 2000);
   }
-
 }

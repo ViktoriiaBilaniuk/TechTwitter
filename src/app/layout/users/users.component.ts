@@ -11,7 +11,7 @@ export class UsersComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   users: any;
-  buttonText = 'Follow';
+  buttonText = 'Add friend';
   added = [];
 
   constructor(public profileService: ProfileService) {}
@@ -26,12 +26,10 @@ export class UsersComponent implements OnInit {
             ...user.payload.val()
           };
         });
-        console.log(this.users);
         }
       );
 
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
-    console.log(this.currentUserId);
     this.profileService.getCurrentUser(this.currentUserId)
       .subscribe(currentUser => {
         this.currentUser = currentUser.payload.val();
@@ -41,8 +39,6 @@ export class UsersComponent implements OnInit {
 
   addNewFollower(followUser) {
     this.added[followUser.userId] = true;
-    console.log(this.added);
-    console.log(followUser);
     this.profileService.addNewFollower(this.currentUser, followUser.userId);
   }
 }

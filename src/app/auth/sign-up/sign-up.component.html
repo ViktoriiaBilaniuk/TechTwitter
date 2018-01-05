@@ -9,19 +9,21 @@
     <div *ngIf="this.authService.success"  class="successMessage">
       <p>You have successfully registered!</p>
     </div>
-    <form>
+    <form name="form" #signupForm="ngForm" (ngSubmit)="signUp(signupForm)">
       <mat-form-field class="example-full-width">
         <input
           matInput
           type="email"
           placeholder="email"
           [(ngModel)]="user.email"
+          required
           [ngModelOptions]="{standalone: true}"
           >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
           matInput
+          required
           type="password"
           placeholder="password"
           [(ngModel)]="user.password"
@@ -33,6 +35,7 @@
           matInput
           type="text"
           placeholder="First name"
+          required
           maxlength="30"
           [(ngModel)]="user.firstName"
           [ngModelOptions]="{standalone: true}"
@@ -43,21 +46,25 @@
           matInput
           type="text"
           placeholder="Last name"
+          required
           maxlength="30"
           [(ngModel)]="user.lastName"
           [ngModelOptions]="{standalone: true}"
           >
       </mat-form-field>
+      <button type="submit" [disabled]="!signupForm.form.valid">Submit</button>
       <button
         mat-raised-button
         color="primary"
-        (click)="signUp()"
-      >Sign up!</button>
+        type="submit"
+        [disabled]="signupForm.form.invalid">
+        Sign up!
+      </button>
     </form>
     <div class="register-link">
       <p>Already have an account?</p>
       <div class="signIn">
-        <a>Sign in!</a>
+        <a routerLink="../login" >  Sign in!</a>
       </div>
     </div>
   </div>
