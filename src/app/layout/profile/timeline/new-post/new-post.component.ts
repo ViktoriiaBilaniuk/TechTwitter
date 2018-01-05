@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PostModel} from '../../../../common/models/PostModel';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {HttpClient} from '@angular/common/http';
+import {UserModel} from '../../../../common/models/UserModel';
 
 @Component({
   selector: 'app-new-post',
@@ -10,9 +11,19 @@ import {HttpClient} from '@angular/common/http';
 })
 export class NewPostComponent implements OnInit {
   currentPost = new PostModel;
-  constructor(public profileService: ProfileService, private http: HttpClient) { }
+  currentUserId: any;
+  currentUser: UserModel;
+
+  constructor(public profileService: ProfileService, private http: HttpClient) {
+  }
 
   ngOnInit() {
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        this.currentUser.userId = currentUser.payload.key;
+      });
   }
 
   postText() {
@@ -20,7 +31,10 @@ export class NewPostComponent implements OnInit {
     this.http.post('https://techtwitter2018.firebaseio.com/walls.json', {
       userId: this.currentPost.userId,
       text: this.currentPost.text,
-      createdAt: this.currentPost.createdAt
+      createdAt: this.currentPost.createdAt,
+      hour: this.currentPost.hour,
+      day: this.currentPost.day,
+      month: this.currentPost.month
     })
       .subscribe(
         res => {
@@ -34,12 +48,53 @@ export class NewPostComponent implements OnInit {
   }
 
   initCurrentPost() {
-    this.currentPost.userId = this.profileService.getCurrentUser().userId;
+    this.currentPost.userId = this.currentUser.userId;
     this.currentPost.createdAt = this.getCurrentTime();
+    this.currentPost.hour = this.getTime();
+    this.currentPost.day = this.getDay();
+    this.currentPost.month = this.getMonth();
   }
+
   getCurrentTime() {
-    let newDate = new Date();
+    const newDate = new Date();
     return newDate;
+  }
+
+  addZero(i) {
+    if (i < 10) {
+      i = '0' + i;
+    }
+    return i;
+  }
+
+  getTime() {
+    const d = new Date();
+    const h = this.addZero(d.getHours());
+    const m = this.addZero(d.getMinutes());
+    const time = h + ':' + m;
+    return time;
+  }
+  getDay() {
+    const d = new Date;
+    return d.getDay();
+  }
+  getMonth() {
+    const d = new Date();
+    const month = new Array();
+    month[0] = 'January';
+    month[1] = 'February';
+    month[2] = 'March';
+    month[3] = 'April';
+    month[4] = 'May';
+    month[5] = 'June';
+    month[6] = 'July';
+    month[7] = 'August';
+    month[8] = 'September';
+    month[9] = 'October';
+    month[10] = 'November';
+    month[11] = 'December';
+    const n = month[d.getMonth()];
+    return n;
   }
 
 

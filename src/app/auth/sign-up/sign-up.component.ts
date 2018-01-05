@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../common/services/auth.service';
 import {UserModel} from '../../common/models/UserModel';
 import {User} from 'firebase';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,7 @@ export class SignUpComponent implements OnInit {
   user = new UserModel;
 
 
-  constructor(public authService: AuthService, public userModel: UserModel) { }
+  constructor(public authService: AuthService, public router: Router) { }
 
   ngOnInit() {
   }
@@ -38,6 +39,9 @@ export class SignUpComponent implements OnInit {
         this.authService.errorMessage = err.message;
       });
     this.user.email = this.user.password = this.user.firstName = this.user.lastName = '';
+    setTimeout(() => {
+      this.router.navigate(['../login']);
+    }, 2000);
   }
 
 }

@@ -4,8 +4,10 @@
     <p>You don`t have friends yet...</p>
   </mat-card>
   <!--<mat-card *ngFor="let item of friendsOfCurrentUser, let i = index">-->
-  <mat-card *ngFor="let item of  users$ | async, let i = index">
-    <div class="image"></div>
+  <mat-card *ngFor="let item of  friends, let i = index">
+    <div class="image">
+      <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
+    </div>
     <div class="name">
       <p>{{item.firstName}} {{item.lastName}}</p>
     </div>

@@ -8,7 +8,6 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  confirmLogout = false;
   openConfirmWondow = false;
 
   constructor(private authService: AuthService) { }

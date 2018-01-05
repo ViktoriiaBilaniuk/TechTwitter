@@ -5,11 +5,11 @@
     <mat-card>
       <div class="user_info">
         <div class="image">
-
+          <p>{{currentUser.firstName.substring(0,1)}}{{currentUser.lastName.substring(0,1)}}</p>
         </div>
         <div class="info">
-          <p class="name">{{profileService.getCurrentUser().firstName}} {{profileService.getCurrentUser().lastName}}</p>
-          <p class="date">{{item.createdAt}}</p>
+          <p class="name">{{currentUser.firstName}} {{currentUser.lastName}}</p>
+          <p class="date">{{item.day}}  {{item.month}} at {{item.hour}}</p>
         </div>
 
       </div>

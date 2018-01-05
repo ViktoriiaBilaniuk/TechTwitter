@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserModel} from '../../../common/models/UserModel';
 import {ProfileService} from '../../../common/services/profile.service';
-import * as firebase from 'firebase';
 import {AuthService} from '../../../common/services/auth.service';
+import {UserModel} from '../../../common/models/UserModel';
 
 @Component({
   selector: 'app-personal-info',
@@ -10,17 +9,20 @@ import {AuthService} from '../../../common/services/auth.service';
   styleUrls: ['./personal-info.component.scss']
 })
 export class PersonalInfoComponent implements OnInit {
-  currentUser: UserModel;
+  currentUser = new UserModel;
   image: ImageBitmap;
+  currentUserId: any;
+  numberOfPosts: any;
 
-  constructor(public profileService: ProfileService, public authService: AuthService) {
-    this.authService.userValue.subscribe((user) => {
-      this.currentUser = user;
-    });
-  }
+  constructor(public profileService: ProfileService, public authService: AuthService) {}
 
   ngOnInit() {
-     this.currentUser = this.profileService.getCurrentUser();
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        this.getNumberOfPosts(currentUser.key);
+      });
   }
 
 
@@ -32,7 +34,11 @@ export class PersonalInfoComponent implements OnInit {
     // document.getElementsByClassName('photo')[0].style.backgroundImage = image;
   }
 
-
-
-
+  getNumberOfPosts(userId) {
+    this.profileService.fetchPosts(userId)
+      .subscribe(posts => {
+        this.numberOfPosts = posts.length;
+        }
+      );
+  }
 }

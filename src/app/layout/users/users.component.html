@@ -5,7 +5,7 @@
       <mat-grid-list cols="3" rowHeight="3:1" gutterSize="20px">
         <mat-grid-tile *ngFor="let item of users" class="user">
           <div class="personal-info">
-            <div class="image">
+            <div class="image"  [routerLink]="['/user', item.userId]">
               <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
             </div>
             <p>{{item.firstName}} {{item.lastName}}</p>
@@ -14,7 +14,8 @@
             mat-raised-button
             color="primary"
             class="follow"
-            (click)="addNewFollower(item.id)"            >
+            [ngClass]="{'disabled': added[item.id]}"
+            (click)="addNewFollower(item)">
             {{buttonText}}
           </button>
         </mat-grid-tile>

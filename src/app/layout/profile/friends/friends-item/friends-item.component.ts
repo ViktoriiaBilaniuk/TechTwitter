@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {UserModel} from '../../../../common/models/UserModel';
-import {debug} from 'util';
-import {Observable} from 'rxjs/Observable';
-import {AngularFireDatabase} from 'angularfire2/database';
+
 
 @Component({
   selector: 'app-friends-item',
@@ -12,64 +9,33 @@ import {AngularFireDatabase} from 'angularfire2/database';
   styleUrls: ['./friends-item.component.scss']
 })
 export class FriendsItemComponent implements OnInit {
-  currentUser: any;
-  currentUser$: any;
-  friendsOfCurrentUser: any[] = [];
+  currentUser: UserModel;
+  currentUserId: any;
   dontHaveFriends = false;
   openConfirmWondow = false;
-  users$: any;
+  friends: any[] = [];
 
-  constructor(public profileService: ProfileService, private http: HttpClient, private db: AngularFireDatabase) {
-    // this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
-
-    setTimeout(() => {
-      this.currentUser$ = this.db.object(`users/${this.currentUser.userId}`).valueChanges();
-    }, 0);
-    this.getFriends();
-  }
+  constructor(public profileService: ProfileService) {}
 
   ngOnInit() {
-   // this.getFriends();
-  }
-
- /* getFriends() {
-    let tempUser = {};
-    console.log(typeof(this.currentUser.followers));
-    if (this.currentUser.followers !== undefined) {
-      Object.values(this.currentUser.followers).forEach(item => {
-        console.log(item);
-        if (item !== null) {
-          this.profileService.getFriend(item)
-            .subscribe((friend) => {
-                tempUser = friend;
-                tempUser['userId'] = item;
-              this.friendsOfCurrentUser.push(friend);
-                console.log( this.friendsOfCurrentUser);
-              }
-            );
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        if (this.currentUser.followers === null){
+          this.currentUser.followers = [];
         }
+        this.getFriends();
       });
-    } else {
-      this.dontHaveFriends = true;
-    }
-  }*/
-
- getFriends() {
-    // console.log(this.profileService.getFriends(this.currentUser$.followers));
-     this.currentUser$
-       .subscribe( (user) => {
-         this.users$ = this.profileService.getFriends(user.followers);
-         }
-       );
- }
-
-
+  }
+  getFriends() {
+    this.friends = this.profileService.getFriends(this.currentUser.followers);
+  }
   openConfirmDialog() {
     this.openConfirmWondow = !this.openConfirmWondow;
   }
-
   removeFriend(indexOfUser) {
-    this.profileService.removeFriend(this.currentUser.userId, indexOfUser);
+    this.profileService.removeFriend(this.currentUserId, indexOfUser);
     this.openConfirmDialog();
   }
 }
