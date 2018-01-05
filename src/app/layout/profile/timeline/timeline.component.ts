@@ -10,8 +10,9 @@ import {UserModel} from '../../../common/models/UserModel';
 })
 export class TimelineComponent implements OnInit {
   postsOfCurrentUser: PostModel[] = [];
-  currentUser: UserModel;
+  currentUser = new UserModel;
   currentUserId: any;
+  noPosts = false;
 
   constructor(public profileService: ProfileService) {}
 
@@ -29,6 +30,11 @@ export class TimelineComponent implements OnInit {
     this.profileService.fetchPosts(this.currentUser.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
+        if (this.postsOfCurrentUser.length === 0) {
+          this.noPosts = true;
+        } else {
+          this.noPosts = false;
+        }
       });
   }
 }
