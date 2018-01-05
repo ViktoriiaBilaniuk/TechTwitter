@@ -12,7 +12,7 @@ export class FriendsItemComponent implements OnInit {
   currentUser: UserModel;
   currentUserId: any;
   dontHaveFriends = true;
-  openConfirmWondow = false;
+  openConfirmWindow = false;
   friends: any[] = [];
 
   constructor(public profileService: ProfileService) {}
@@ -34,10 +34,16 @@ export class FriendsItemComponent implements OnInit {
     this.friends = this.profileService.getFriends(this.currentUser.followers);
   }
   openConfirmDialog() {
-    this.openConfirmWondow = !this.openConfirmWondow;
+    this.openConfirmWindow = !this.openConfirmWindow;
   }
   removeFriend(indexOfUser) {
-    this.profileService.removeFriend(this.currentUserId, indexOfUser);
+    this.profileService.removeFriend(this.currentUserId, indexOfUser)
+      .then((item) => {
+         console.log('friend removed');
+      })
+      .catch((err) => {
+        console.log(err);
+      });;
     this.openConfirmDialog();
   }
 }

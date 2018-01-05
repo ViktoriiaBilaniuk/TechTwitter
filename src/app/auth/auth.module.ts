@@ -1,29 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import {AuthService} from '../common/services/auth.service';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from './environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {FormsModule} from '@angular/forms';
-import {Http, HttpModule} from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 import {UserModel} from '../common/models/UserModel';
 
-
-
 const routes: Routes = [
-  { path: '', component: AuthComponent, children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'sign-up', component: SignUpComponent}
-    ]}
+  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'login', component: LoginComponent },
 ];
-
-
 
 @NgModule({
   imports: [
@@ -39,7 +31,6 @@ const routes: Routes = [
     HttpModule
   ],
   declarations: [
-    AuthComponent,
     LoginComponent,
     SignUpComponent
   ],

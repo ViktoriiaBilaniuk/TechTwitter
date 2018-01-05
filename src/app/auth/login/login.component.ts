@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
           .subscribe((user) => {
             this.currentUser = user[0].payload.val();
             this.currentUser.userId = user[0].payload.key;
-            // localStorage.setItem('CurrentUser', JSON.stringify(this.currentUser));
             this.authService.currentUser = this.currentUser;
             this.authService.currentUserId = this.currentUser.userId;
             setTimeout(() => {
