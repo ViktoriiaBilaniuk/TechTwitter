@@ -7,8 +7,10 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 
 .body{
   margin: 0px 50px;
-  margin-top: 100px;
-
+  margin-top: 60px;
+  .dont-have-posts{
+    color: #a0a0a0;
+  }
   .posts{
     mat-card{
       margin: 0px 20px;

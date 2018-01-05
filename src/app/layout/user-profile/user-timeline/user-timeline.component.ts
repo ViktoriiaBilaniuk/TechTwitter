@@ -14,6 +14,7 @@ export class UserTimelineComponent implements OnInit {
   private sub: any;
   userId = '';
   user = new UserModel;
+  noPosts = false;
 
   constructor(public profileService: ProfileService, public route: ActivatedRoute) {}
 
@@ -29,9 +30,13 @@ export class UserTimelineComponent implements OnInit {
   }
 
   getPosts() {
+    this.noPosts = false;
     this.profileService.fetchPosts(this.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
+        if (this.postsOfCurrentUser.length === 0) {
+          this.noPosts = true;
+        }
       });
   }
 }
