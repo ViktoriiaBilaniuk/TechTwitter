@@ -8,13 +8,13 @@
       <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
     </div>
     <div class="name">
-      <p>{{item.firstName}} {{item.lastName}}</p>
+      <p>{{item.firstName  + ' ' +  item.lastName}}</p>
     </div>
     <button mat-icon-button (click)="openConfirmDialog()">
       <i class="material-icons">delete</i>
     </button>
 
-    <div *ngIf="openConfirmWondow" class="confirm_window">
+    <div *ngIf="openConfirmWindow" class="confirm_window">
       <p>Remove friend?</p>
       <div class="buttons">
         <button mat-raised-button (click)="removeFriend(i)">Yes</button>

@@ -8,7 +8,7 @@ import { FriendsComponent } from './layout/profile/friends/friends.component';
 import { NewPostComponent } from './layout/profile/timeline/new-post/new-post.component';
 import { FriendsItemComponent } from './layout/profile/friends/friends-item/friends-item.component';
 import { UserProfileComponent } from './layout/user-profile/user-profile.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
@@ -26,6 +26,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {ProfileComponent} from './layout/profile/profile.component';
 import {PersonalInfoComponent} from './layout/profile/personal-info/personal-info.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatInputModule, MatListModule,
   MatMenuModule
 } from '@angular/material';
@@ -70,7 +71,9 @@ import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-ti
     MatInputModule,
     MatDialogModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, AuthGuard, ProfileService],
   bootstrap: [AppComponent]

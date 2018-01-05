@@ -40,22 +40,16 @@ export class ProfileService {
   }
 
   addNewFollower(user, followUserId) {
-    const items = this.db.list('/users');
+    const items = this.db.list(this.usersUrl);
     if (user.followers === undefined) {
       user.followers = [];
     }
     user.followers.push(followUserId);
-    items.update(user.userId, { followers : user.followers})
-      .then((item) => {
-        // console.log(item);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return items.update(user.userId, { followers : user.followers})
   }
   removeFriend(currentUserId, indexOfUser) {
     const itemsRef = this.db.list('/users/' + currentUserId + '/followers');
-    itemsRef.remove('' + indexOfUser);
+    return itemsRef.remove('' + indexOfUser);
   }
 }
 

@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  openConfirmWondow = false;
+  openConfirmWindow = false;
 
   constructor(private authService: AuthService) { }
 
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logOut();
   }
   openConfirmDialog() {
-    this.openConfirmWondow = !this.openConfirmWondow;
+    this.openConfirmWindow = !this.openConfirmWindow;
   }
 
 

@@ -1,6 +1,7 @@
 <div class="body">
   <div class="container wrapper">
     <app-header></app-header>
+
     <div class="user_list">
       <mat-grid-list cols="3" rowHeight="3:1" gutterSize="20px">
         <mat-grid-tile *ngFor="let item of users" class="user">
@@ -8,13 +9,13 @@
             <div class="image"  [routerLink]="['/user', item.userId]">
               <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
             </div>
-            <p>{{item.firstName}} {{item.lastName}}</p>
+            <p>{{item.firstName + ' ' + item.lastName}}</p>
           </div>
           <button
             mat-raised-button
             color="primary"
             class="follow"
-            [ngClass]="{'disabled': added[item.id]}"
+            [disabled]="added[item.id]"
             (click)="addNewFollower(item)">
             {{buttonText}}
           </button>
