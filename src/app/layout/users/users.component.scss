@@ -20,6 +20,7 @@ $light-blue: #e2e5f4;
       mat-grid-tile{
         background-color: white;
         box-shadow: 7px 7px 8px 0px #b0b0b030;
+
         .personal-info{
           height: 100%;
           .image{
@@ -28,10 +29,13 @@ $light-blue: #e2e5f4;
             height: 100%;
             position: absolute;
             left: 0;
+            &:hover{
+              cursor: pointer;
+            }
             p{
               font-size: 37px;
               text-shadow: 2px 2px 4px #a7a7a7;
-              color: rgba(63, 81, 181, 0.38);;
+              color: rgba(63, 81, 181, 0.38);
             }
           }
           p{
@@ -42,9 +46,11 @@ $light-blue: #e2e5f4;
           position: absolute;
           right: 5px;
           bottom: 5px;
+          &.disabled {
+            pointer-events: none;
+          }
         }
       }
-
     }
   }
 }

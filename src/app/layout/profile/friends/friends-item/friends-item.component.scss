@@ -3,6 +3,7 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 $blue-trans: rgba(63, 81, 181, 0.15);
+
 .blur {
   position: fixed;
   height: 100vh;
@@ -15,17 +16,21 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 }
 .body{
   background-color: white;
-
   mat-card{
     width: 100%;
     display: flex;
     justify-content: baseline;
     padding: 10px;
-
     .image{
       background-color: $blue-trans;
       border-radius: 50%;
       width: 49px;
+      p{
+        font-size: 23px;
+        line-height: 48px;
+        text-shadow: 2px 2px 4px #a7a7a7;
+        color: rgba(63, 81, 181, 0.38);
+      }
     }
     .name{
       padding: 15px 0;

@@ -1,42 +1,38 @@
 import { Injectable } from '@angular/core';
 import {UserModel} from '../models/UserModel';
 import {PostModel} from '../models/PostModel';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import {Subject} from 'rxjs/Subject';
-import {AuthService} from './auth.service';
-import {environment} from '../../auth/environments/environment';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {HttpClient} from '@angular/common/http';
-import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ProfileService {
   usersUrl = '/users';
   postsUrl = '/walls';
-  followsUrl = '/walls';
-  userRef: any;
-  postsRef: AngularFireList<PostModel> = this.db.list<PostModel>(this.postsUrl);
-  usersRef: AngularFireList<UserModel> = this.db.list<UserModel>(this.usersUrl);
-  userValue = new Subject();
-  allUsers: UserModel[] = [];
   currentUser: UserModel;
 
-  constructor(private db: AngularFireDatabase, private authService: AuthService, public http: HttpClient) {
-    // this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
+  constructor(private db: AngularFireDatabase, public http: HttpClient) {}
+  getCurrentUser(userId) {
+    return this.db.object(`users/${userId}`).snapshotChanges();
   }
-   getCurrentUser(userId) {
-     // return JSON.parse(localStorage.getItem('CurrentUser'));
-     return this.db.object(`users/${userId}`).valueChanges();
-  }
-
   fetchPosts(userId) {
     return this.db.list<PostModel>(this.postsUrl, ref => ref.orderByChild('userId').equalTo(userId)).snapshotChanges();
   }
   getFriend(friendId) {
-    return this.db.object(`users/${friendId}`).valueChanges();
+     return this.db.object(`users/${friendId}`).valueChanges();
+  }
+  getUser(userId) {
+    return this.db.object(`users/${userId}`).snapshotChanges();
   }
   getFriends(friendArray) {
-    return friendArray.map((id) => this.getFriend(id));
+    const friends = [];
+    friendArray.forEach((id) => {
+      this.getFriend(id)
+        .subscribe((item) => {
+          friends.push(item);
+        });
+    });
+    return friends;
   }
 
   getAllUsers(): Observable<any> {
@@ -45,7 +41,7 @@ export class ProfileService {
 
   addNewFollower(user, followUserId) {
     const items = this.db.list('/users');
-    if (!user.followers) {
+    if (user.followers === undefined) {
       user.followers = [];
     }
     user.followers.push(followUserId);
@@ -61,6 +57,5 @@ export class ProfileService {
     const itemsRef = this.db.list('/users/' + currentUserId + '/followers');
     itemsRef.remove('' + indexOfUser);
   }
-
 }
 

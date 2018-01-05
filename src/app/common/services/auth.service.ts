@@ -9,12 +9,8 @@ import {environment} from '../../auth/environments/environment';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
 
-
-
-
 @Injectable()
 export class AuthService {
-
   usersUrl = '/users';
   user: Observable <firebase.User>;
   errorMessage = '';
@@ -32,8 +28,10 @@ export class AuthService {
     this.userValue.next(value);
     localStorage.setItem('CurrentUser', JSON.stringify(value));
   }
-
-
+  set currentUserId (id) {
+    this.userValue.next(id);
+    localStorage.setItem('CurrentUserId', JSON.stringify(id));
+  }
   signUp(userModel: UserModel) {
     return this.http.post( environment.firebase.databaseURL + this.usersUrl + '.json', {
       'firstName': userModel.firstName,
@@ -42,33 +40,24 @@ export class AuthService {
       'followers': []
     });
   }
-
   signUpInFireAuth(email: string, password: string) {
     this.isError = false;
     return this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password);
   }
-
   logIn(email: string, password: string) {
     this.isError = false;
     return this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password);
   }
-
   fetchUser(email) {
     return this.db.list<UserModel>(this.usersUrl, ref => ref.orderByChild('email').equalTo(email)).snapshotChanges();
   }
-
   logOut() {
     localStorage.removeItem('CurrentUser');
     this.router.navigate(['../../auth/login']);
   }
-  getAllUsers() {
-    return this.db.list(this.usersUrl);
-  }
-
-
 }
 

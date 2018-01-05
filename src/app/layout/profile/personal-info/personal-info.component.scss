@@ -3,12 +3,9 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
-
 .personal{
   .photo_name{
-
     .photo{
-
       background-color: rgba(176, 179, 195, 0.4117647058823529);
       background-image: url("../../../../assets/img/user-icon-placeholder.png");
       background-size: contain;
@@ -28,7 +25,6 @@ $light-blue: #e2e5f4;
         position: relative;
       }
     }
-
   }
   .name_email{
     padding-top: 30px;

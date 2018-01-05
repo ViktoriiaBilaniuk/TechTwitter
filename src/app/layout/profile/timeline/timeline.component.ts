@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../../../common/services/profile.service';
 import {PostModel} from '../../../common/models/PostModel';
-import {AuthService} from '../../../common/services/auth.service';
 import {UserModel} from '../../../common/models/UserModel';
 
 @Component({
@@ -12,13 +11,26 @@ import {UserModel} from '../../../common/models/UserModel';
 export class TimelineComponent implements OnInit {
   postsOfCurrentUser: PostModel[] = [];
   currentUser: UserModel;
+  currentUserId: any;
 
   constructor(public profileService: ProfileService) {
-    this.currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
-    this.getPosts();
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        this.currentUser.userId = currentUser.payload.key;
+        this.getPosts();
+      });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        this.currentUser.userId = currentUser.payload.key;
+      });
+  }
 
   getPosts() {
     this.profileService.fetchPosts(this.currentUser.userId)
