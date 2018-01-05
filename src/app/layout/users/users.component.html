@@ -2,6 +2,24 @@
   <div class="container wrapper">
     <app-header></app-header>
 
+<!--    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of users" [value]="option.firstName">
+            {{ option.firstName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>-->
+
+    <input [(ngModel)]="searchText" placeholder="search text goes here">
+    <ul>
+      <li *ngFor="let user of users | filter : searchText">
+        {{user.firstName + ' ' + user.lastName}}
+      </li>
+    </ul>
+
     <div class="user_list">
       <mat-grid-list cols="3" rowHeight="3:1" gutterSize="20px">
         <mat-grid-tile *ngFor="let item of users" class="user">

@@ -32,6 +32,7 @@ import {
 } from '@angular/material';
 import {ProfileService} from './common/services/profile.service';
 import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-timeline.component';
+import {FilterPipe} from './layout/users/filter.pipe';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-ti
     UserProfileComponent,
     UsersComponent,
     PersonalInfoComponent,
-    UserTimelineComponent
+    UserTimelineComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
