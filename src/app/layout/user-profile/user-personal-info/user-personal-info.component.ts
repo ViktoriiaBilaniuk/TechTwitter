@@ -6,7 +6,7 @@ import {UserModel} from '../../../common/models/UserModel';
 @Component({
   selector: 'app-user-personal-info',
   templateUrl: './user-personal-info.component.html',
-  styleUrls: ['./user-personal-info.component.css']
+  styleUrls: ['./user-personal-info.component.scss']
 })
 export class UserPersonalInfoComponent implements OnInit {
   private sub: any;

@@ -16,6 +16,9 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 }
 .body{
   background-color: white;
+  .dont-have-friends{
+    color: #a0a0a0;
+  }
   mat-card{
     width: 100%;
     display: flex;

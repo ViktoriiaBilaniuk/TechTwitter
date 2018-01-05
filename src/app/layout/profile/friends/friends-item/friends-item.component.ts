@@ -11,19 +11,21 @@ import {UserModel} from '../../../../common/models/UserModel';
 export class FriendsItemComponent implements OnInit {
   currentUser: UserModel;
   currentUserId: any;
-  dontHaveFriends = false;
+  dontHaveFriends = true;
   openConfirmWondow = false;
   friends: any[] = [];
 
   constructor(public profileService: ProfileService) {}
 
   ngOnInit() {
+    this.dontHaveFriends = false;
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
     this.profileService.getCurrentUser(this.currentUserId)
       .subscribe(currentUser => {
         this.currentUser = currentUser.payload.val();
-        if (this.currentUser.followers === null){
+        if (this.currentUser.followers === null || this.currentUser.followers === undefined) {
           this.currentUser.followers = [];
+          this.dontHaveFriends = true;
         }
         this.getFriends();
       });

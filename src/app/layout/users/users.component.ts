@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
             ...user.payload.val()
           };
         });
-        console.log(this.users);
         }
       );
 
@@ -41,8 +40,6 @@ export class UsersComponent implements OnInit {
 
   addNewFollower(followUser) {
     this.added[followUser.userId] = true;
-    console.log(this.added);
-    console.log(followUser);
     this.profileService.addNewFollower(this.currentUser, followUser.userId);
   }
 }

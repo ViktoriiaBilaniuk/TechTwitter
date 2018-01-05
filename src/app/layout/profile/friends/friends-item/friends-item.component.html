@@ -1,9 +1,8 @@
 <div *ngIf="openConfirmWondow" class="blur"></div>
 <div class="body">
-  <mat-card *ngIf="dontHaveFriends">
+  <mat-card class="dont-have-friends" *ngIf="dontHaveFriends">
     <p>You don`t have friends yet...</p>
   </mat-card>
-  <!--<mat-card *ngFor="let item of friendsOfCurrentUser, let i = index">-->
   <mat-card *ngFor="let item of  friends, let i = index">
     <div class="image">
       <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>

@@ -30,6 +30,7 @@ import {
   MatMenuModule
 } from '@angular/material';
 import {ProfileService} from './common/services/profile.service';
+import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-timeline.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {ProfileService} from './common/services/profile.service';
     NewPostComponent,
     UserProfileComponent,
     UsersComponent,
-    PersonalInfoComponent
+    PersonalInfoComponent,
+    UserTimelineComponent
   ],
   imports: [
     BrowserModule,
