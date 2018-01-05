@@ -14,6 +14,7 @@ export class UserPersonalInfoComponent implements OnInit {
   user = new UserModel;
   currentUser = new UserModel;
   currentUserId: any;
+  numberOfPosts: number;
   constructor(public route: ActivatedRoute, public profileService: ProfileService) { }
 
   ngOnInit() {
@@ -25,11 +26,19 @@ export class UserPersonalInfoComponent implements OnInit {
       });
     this.sub = this.route.params.subscribe(params => {
       this.userId = params['id'];
+      this.getNumberOfPosts(this.userId);
       this.profileService.getUser(this.userId)
         .subscribe((user) => {
           this.user = user.payload.val();
         });
     });
+  }
+  getNumberOfPosts(userId) {
+    this.profileService.fetchPosts(userId)
+      .subscribe(posts => {
+          this.numberOfPosts = posts.length;
+        }
+      );
   }
 
   addFriend() {
@@ -37,4 +46,5 @@ export class UserPersonalInfoComponent implements OnInit {
     console.log(this.userId);
     this.profileService.addNewFollower(this.currentUser, this.userId);
   }
+
 }

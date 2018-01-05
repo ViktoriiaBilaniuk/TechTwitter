@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../../../common/services/profile.service';
 import {PostModel} from '../../../common/models/PostModel';
 import {UserModel} from '../../../common/models/UserModel';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user-timeline',
@@ -10,30 +11,25 @@ import {UserModel} from '../../../common/models/UserModel';
 })
 export class UserTimelineComponent implements OnInit {
   postsOfCurrentUser: PostModel[] = [];
-  currentUser: UserModel;
-  currentUserId: any;
+  private sub: any;
+  userId = '';
+  user = new UserModel;
 
-  constructor(public profileService: ProfileService) {
-    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
-    this.profileService.getCurrentUser(this.currentUserId)
-      .subscribe(currentUser => {
-        this.currentUser = currentUser.payload.val();
-        this.currentUser.userId = currentUser.payload.key;
-        this.getPosts();
-      });
-  }
+  constructor(public profileService: ProfileService, public route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
-    this.profileService.getCurrentUser(this.currentUserId)
-      .subscribe(currentUser => {
-        this.currentUser = currentUser.payload.val();
-        this.currentUser.userId = currentUser.payload.key;
-      });
+    this.sub = this.route.params.subscribe(params => {
+      this.userId = params['id'];
+      this.profileService.getUser(this.userId)
+        .subscribe((user) => {
+          this.user = user.payload.val();
+          this.getPosts();
+        });
+    });
   }
 
   getPosts() {
-    this.profileService.fetchPosts(this.currentUser.userId)
+    this.profileService.fetchPosts(this.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
       });
