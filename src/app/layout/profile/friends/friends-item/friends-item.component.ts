@@ -15,6 +15,7 @@ export class FriendsItemComponent implements OnInit {
   openConfirmWindow = false;
   friends: any[] = [];
 
+
   constructor(public profileService: ProfileService) {}
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class FriendsItemComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-      });;
+      });
     this.openConfirmDialog();
   }
 }

@@ -1,28 +1,17 @@
+<div *ngIf="openMessage" class="blur"></div>
 <div class="body">
   <div class="container wrapper">
     <app-header></app-header>
-
-<!--    <form class="example-form">
+    <mat-card *ngIf="openMessage" class="friend-added-message">Friend added!</mat-card>
+    <div class="autocomplete">
       <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of users" [value]="option.firstName">
-            {{ option.firstName }}
-          </mat-option>
-        </mat-autocomplete>
+        <input matInput [(ngModel)]="searchText" placeholder="Search your friend...">
       </mat-form-field>
-    </form>-->
-
-    <input [(ngModel)]="searchText" placeholder="search text goes here">
-    <ul>
-      <li *ngFor="let user of users | filter : searchText">
-        {{user.firstName + ' ' + user.lastName}}
-      </li>
-    </ul>
+    </div>
 
     <div class="user_list">
       <mat-grid-list cols="3" rowHeight="3:1" gutterSize="20px">
-        <mat-grid-tile *ngFor="let item of users" class="user">
+        <mat-grid-tile *ngFor="let item of users | filter : searchText" class="user">
           <div class="personal-info">
             <div class="image"  [routerLink]="['/user', item.userId]">
               <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>

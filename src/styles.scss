@@ -22,3 +22,10 @@ $light-blue: #e2e5f4;
 .wrapper{
   background-color: $white-trans;
 }
+
+
+@media (max-width: 1024px) {
+  .container{
+    width: 100vw;
+  }
+}

@@ -17,16 +17,9 @@ export class UsersComponent implements OnInit {
   currentUserId: any;
   users: any;
   buttonText = 'Add friend';
+  openMessage = false;
   added = [];
 
-  characters = [
-    'Finn the human',
-    'Jake the dog',
-    'Princess bubblegum',
-    'Lumpy Space Princess',
-    'Beemo1',
-    'Beemo2'
-  ]
 
   constructor(public profileService: ProfileService) {}
 
@@ -56,6 +49,11 @@ export class UsersComponent implements OnInit {
     this.added[followUser.userId] = true;
     this.profileService.addNewFollower(this.currentUser, followUser.userId)
       .then((item) => {
+        this.openMessage = true;
+        setTimeout(() => {
+          this.openMessage = false;
+          }, 1000
+        );
          console.log('friend added!');
       })
       .catch((err) => {

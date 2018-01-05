@@ -9,6 +9,7 @@ $light-blue: #e2e5f4;
   background-image: url("../../../assets/img/white_brick.jpg");
   .wrapper{
     padding-bottom: 150px;
+    min-height: 100vh;
   }
   app-header{
     margin: 30px;
