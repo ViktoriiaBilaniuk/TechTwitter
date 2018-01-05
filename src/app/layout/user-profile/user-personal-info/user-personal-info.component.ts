@@ -10,11 +10,19 @@ import {UserModel} from '../../../common/models/UserModel';
 })
 export class UserPersonalInfoComponent implements OnInit {
   private sub: any;
-  userId: string;
+  userId = '';
   user = new UserModel;
+  currentUser = new UserModel;
+  currentUserId: any;
   constructor(public route: ActivatedRoute, public profileService: ProfileService) { }
 
   ngOnInit() {
+    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
+    this.profileService.getCurrentUser(this.currentUserId)
+      .subscribe(currentUser => {
+        this.currentUser = currentUser.payload.val();
+        this.currentUser.userId = currentUser.payload.key;
+      });
     this.sub = this.route.params.subscribe(params => {
       this.userId = params['id'];
       this.profileService.getUser(this.userId)
@@ -22,5 +30,11 @@ export class UserPersonalInfoComponent implements OnInit {
           this.user = user.payload.val();
         });
     });
+  }
+
+  addFriend() {
+    console.log(this.currentUser.followers);
+    console.log(this.userId);
+    this.profileService.addNewFollower(this.currentUser, this.userId);
   }
 }

@@ -13,15 +13,7 @@ export class TimelineComponent implements OnInit {
   currentUser: UserModel;
   currentUserId: any;
 
-  constructor(public profileService: ProfileService) {
-    this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
-    this.profileService.getCurrentUser(this.currentUserId)
-      .subscribe(currentUser => {
-        this.currentUser = currentUser.payload.val();
-        this.currentUser.userId = currentUser.payload.key;
-        this.getPosts();
-      });
-  }
+  constructor(public profileService: ProfileService) {}
 
   ngOnInit() {
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
@@ -29,6 +21,7 @@ export class TimelineComponent implements OnInit {
       .subscribe(currentUser => {
         this.currentUser = currentUser.payload.val();
         this.currentUser.userId = currentUser.payload.key;
+        this.getPosts();
       });
   }
 

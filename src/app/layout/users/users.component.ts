@@ -11,7 +11,7 @@ export class UsersComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   users: any;
-  buttonText = 'Follow';
+  buttonText = 'Add friend';
   added = [];
 
   constructor(public profileService: ProfileService) {}
@@ -30,7 +30,6 @@ export class UsersComponent implements OnInit {
       );
 
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
-    console.log(this.currentUserId);
     this.profileService.getCurrentUser(this.currentUserId)
       .subscribe(currentUser => {
         this.currentUser = currentUser.payload.val();
