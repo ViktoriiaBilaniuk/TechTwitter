@@ -7,7 +7,7 @@
       <p>You have entered the wrong password or login!</p>
     </div>
 
-    <form action="">
+    <form action="" #logForm="ngForm" (ngSubmit)="logIn()" >
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -15,7 +15,8 @@
           placeholder="email"
           [(ngModel)]="user.email"
           value=""
-          [ngModelOptions]="{standalone: true}"
+          name="email"
+          required
           >
       </mat-form-field>
       <mat-form-field class="example-full-width">
@@ -25,13 +26,15 @@
           placeholder="password"
           [(ngModel)]="user.password"
           value=""
-          [ngModelOptions]="{standalone: true}"
+          name="pass"
+          required
           >
       </mat-form-field>
       <button
+        type="submit"
+        [disabled]="logForm.form.invalid"
         mat-raised-button
         color="primary"
-        (click)="logIn()"
        >
         <a>Let me in!</a>
       </button>

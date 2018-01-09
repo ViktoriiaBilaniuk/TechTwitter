@@ -58,6 +58,6 @@ export class UsersComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-      });;
+      });
   }
 }

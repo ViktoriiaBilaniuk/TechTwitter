@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {UserModel} from '../../../../common/models/UserModel';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -14,7 +15,6 @@ export class FriendsItemComponent implements OnInit {
   dontHaveFriends = true;
   openConfirmWindow = false;
   friends: any[] = [];
-
 
   constructor(public profileService: ProfileService) {}
 

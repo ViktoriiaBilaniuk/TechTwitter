@@ -13,32 +13,32 @@
       <mat-form-field class="example-full-width">
         <input
           matInput
+          name="email"
           type="email"
           placeholder="email"
           [(ngModel)]="user.email"
           required
-          [ngModelOptions]="{standalone: true}"
           >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
           matInput
           required
+          name="pass"
           type="password"
           placeholder="password"
           [(ngModel)]="user.password"
-          [ngModelOptions]="{standalone: true}"
           >
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input
           matInput
+          name="fname"
           type="text"
           placeholder="First name"
           required
           maxlength="30"
           [(ngModel)]="user.firstName"
-          [ngModelOptions]="{standalone: true}"
           >
       </mat-form-field>
       <mat-form-field class="example-full-width">
@@ -49,16 +49,16 @@
           required
           maxlength="30"
           [(ngModel)]="user.lastName"
-          [ngModelOptions]="{standalone: true}"
+          name="lname"
           >
       </mat-form-field>
-      <button type="submit" [disabled]="!signupForm.form.valid">Submit</button>
       <button
         mat-raised-button
         color="primary"
         type="submit"
         [disabled]="signupForm.form.invalid">
         Sign up!
+
       </button>
     </form>
     <div class="register-link">

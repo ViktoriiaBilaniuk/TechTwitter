@@ -2,8 +2,7 @@
 <div class="body">
   <div class="container wrapper">
     <app-header></app-header>
-   <!-- <mat-card *ngIf="openMessage" class="friend-added-message">Friend added!</mat-card>-->
-     <mat-card  class="friend-added-message">Friend added!</mat-card>
+    <mat-card *ngIf="openMessage" class="friend-added-message">Friend added!</mat-card>
     <div class="autocomplete">
       <mat-form-field class="example-full-width">
         <input matInput [(ngModel)]="searchText" placeholder="Search your friend...">
