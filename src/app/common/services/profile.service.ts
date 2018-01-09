@@ -25,6 +25,10 @@ export class ProfileService {
     return this.db.object(`users/${userId}`).snapshotChanges();
   }
   getFriends(friendArray) {
+    console.log(friendArray);
+    if (friendArray === undefined) {
+      friendArray = [];
+    }
     const friends = [];
     friendArray.forEach((id) => {
       this.getFriend(id)

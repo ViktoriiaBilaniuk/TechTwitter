@@ -1,10 +1,9 @@
-<div *ngIf="openConfirmWondow" class="blur"></div>
+<div *ngIf="openConfirmWindow" class="blur"></div>
 <div class="body">
   <mat-card class="dont-have-friends" *ngIf="dontHaveFriends">
     <p>You don`t have friends yet...</p>
   </mat-card>
-  <mat-card *ngFor="let item of friends, let i = index">
-    {{i}}
+  <mat-card *ngFor="let item of friends, let i = index" (click)="passIndex(i)">
     <div class="image">
       <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
     </div>
@@ -18,7 +17,7 @@
     <div [hidden]="!openConfirmWindow" class="confirm_window">
       <p>Remove friend?</p>
       <div class="buttons">
-        <button #remove mat-raised-button (click)="removeFriend(i)">Yes {{i}}</button>
+        <button #remove mat-raised-button (click)="removeFriend()">Yes</button>
         <button mat-raised-button (click)="openConfirmDialog()">No</button>
       </div>
     </div>
