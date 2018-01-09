@@ -24,7 +24,7 @@ export class ProfileService {
   getUser(userId) {
     return this.db.object(`users/${userId}`).snapshotChanges();
   }
-  getFriends(friendArray) {
+/*  getFriends(friendArray) {
     const friends = [];
     friendArray.forEach((id) => {
       this.getFriend(id)
@@ -33,6 +33,12 @@ export class ProfileService {
         });
     });
     return friends;
+  }*/
+
+  getFriends(friendArray) {
+    friendArray.forEach((id) => {
+      return this.getFriend(id);
+    });
   }
 
   getAllUsers(): Observable<any> {
@@ -52,4 +58,3 @@ export class ProfileService {
     return itemsRef.remove('' + indexOfUser);
   }
 }
-

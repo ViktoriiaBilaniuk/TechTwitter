@@ -38,6 +38,7 @@ export class FriendsItemComponent implements OnInit {
     this.openConfirmWindow = !this.openConfirmWindow;
   }
   removeFriend(indexOfUser) {
+    console.log(indexOfUser);
     this.profileService.removeFriend(this.currentUserId, indexOfUser)
       .then((item) => {
          console.log('friend removed');

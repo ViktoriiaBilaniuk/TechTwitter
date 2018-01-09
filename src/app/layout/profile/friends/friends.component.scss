@@ -4,6 +4,11 @@ $blue: #3f51b5;
 $light-blue: #e2e5f4;
 $blue-trans: rgba(63, 81, 181, 0.15);
 
+$ipadPro-width: 1024px;
+$ipad-width: 768px;
+$iphoneX-width: 375px;
+$iphone8Plus-width: 414px;
+
 .friends{
   background-color: $blue-trans;
   padding: 20px;
@@ -18,5 +23,15 @@ $blue-trans: rgba(63, 81, 181, 0.15);
 
   app-friends-item{
     margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: $ipad-width) {
+  .friends{
+    margin: 0px;
+    margin-top: 20px;
+  }
+  .body {
+    margin: 0px;
   }
 }

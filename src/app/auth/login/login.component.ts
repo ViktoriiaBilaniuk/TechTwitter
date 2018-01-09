@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
+    this.user.email = this.user.password  = '';
     if (localStorage.getItem('CurrentUser')) {
       localStorage.removeItem('CurrentUser');
     }
