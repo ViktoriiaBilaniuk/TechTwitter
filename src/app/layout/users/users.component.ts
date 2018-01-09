@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../common/services/profile.service';
 import {UserModel} from '../../common/models/UserModel';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {map} from 'rxjs/operator/map';
-import {startWith} from 'rxjs/operator/startWith';
-import {Subject} from 'rxjs/Subject';
+
 
 @Component({
   selector: 'app-users',
