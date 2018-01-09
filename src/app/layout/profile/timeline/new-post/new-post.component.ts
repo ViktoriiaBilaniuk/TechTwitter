@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostModel} from '../../../../common/models/PostModel';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {HttpClient} from '@angular/common/http';
@@ -13,6 +13,16 @@ export class NewPostComponent implements OnInit {
   currentPost = new PostModel;
   currentUserId: any;
   currentUser: UserModel;
+
+  ///////////
+
+  iconColor = '#ccc';
+  overlayColor = 'rgba(255,255,255,0.5)';
+  loaded = false;
+  imageLoaded = false;
+  imageSrc = '';
+
+  /////
 
   constructor(public profileService: ProfileService, private http: HttpClient) {
   }
@@ -34,7 +44,8 @@ export class NewPostComponent implements OnInit {
       createdAt: this.currentPost.createdAt,
       hour: this.currentPost.hour,
       day: this.currentPost.day,
-      month: this.currentPost.month
+      month: this.currentPost.month,
+      image: this.currentPost.image
     })
       .subscribe(
         res => {
@@ -53,6 +64,7 @@ export class NewPostComponent implements OnInit {
     this.currentPost.hour = this.getTime();
     this.currentPost.day = this.getDay();
     this.currentPost.month = this.getMonth();
+    this.currentPost.image = this.getImage();
   }
 
   getCurrentTime() {
@@ -98,4 +110,38 @@ export class NewPostComponent implements OnInit {
   }
 
 
+
+  /*work with image upload*/
+
+  handleImageLoad() {
+    this.imageLoaded = true;
+    this.iconColor = this.overlayColor;
+  }
+
+  handleInputChange(e) {
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    const reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    this.loaded = false;
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+  _handleReaderLoaded(e) {
+    const reader = e.target;
+    this.imageSrc = reader.result;
+    this.loaded = true;
+  }
+
+  getImage() {
+    return this.imageSrc;
+  }
+
+  closeImage() {
+    this.imageSrc = undefined;
+  }
 }

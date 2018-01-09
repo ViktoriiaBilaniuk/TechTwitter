@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { TimelineComponent } from './layout/profile/timeline/timeline.component';
 import { FriendsComponent } from './layout/profile/friends/friends.component';
@@ -33,6 +31,7 @@ import {
 import {ProfileService} from './common/services/profile.service';
 import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-timeline.component';
 import {FilterPipe} from './layout/users/filter.pipe';
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 
 
 @NgModule({
@@ -74,7 +73,8 @@ import {FilterPipe} from './layout/users/filter.pipe';
     MatDialogModule,
     MatListModule,
     MatGridListModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [AuthService, AuthGuard, ProfileService],
   bootstrap: [AppComponent]
