@@ -44,9 +44,9 @@
             mat-raised-button
             color="primary"
             class="follow"
-            [disabled]="added[item.id]"
+            [disabled]="disableButton(item)"
             (click)="addNewFollower(item)">
-            {{buttonText}}
+            {{getButtonText(item)}}
           </button>
         </mat-card>
       </div>

@@ -9,14 +9,32 @@
         [(ngModel)]="currentPost.text"
         placeholder="Any news?">
       </textarea>
+      <div *ngIf="imageSrc" class="image">
+
+        <i
+          class="material-icons close"
+          (click)="closeImage()"
+        >
+          add_circle
+        </i>
+        <img
+          [src]="imageSrc"
+          (load)="handleImageLoad()"
+          [class.loaded]="imageLoaded"/>
+      </div>
       <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      <i class="material-icons" (click)="file.click()">
+        add_circle
+        <input #file type="file" name="file" accept="image/*"
+               (change)="handleInputChange($event)">
+      </i>
     </mat-form-field>
     <button
       mat-fab
       color="primary"
       (click)="postText()"
     >Post</button>
-
   </div>
 </div>
+
 

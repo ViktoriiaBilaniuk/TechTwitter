@@ -16,10 +16,7 @@ export class UsersComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   users: any;
-  buttonText = 'Add friend';
   openMessage = false;
-  added = [];
-
 
   constructor(public profileService: ProfileService) {}
 
@@ -34,19 +31,19 @@ export class UsersComponent implements OnInit {
     this.profileService.getAllUsers()
       .subscribe( (users) => {
           this.users = users.map(user => {
-            this.added[user.key] = false;
             return {
+              isFriendOfCurrentUser: this.checkIfUserIsFriendOfCurrentuser(this.currentUser.userId, user.key),
               userId: user.key,
               ...user.payload.val()
             };
           })
             .filter(user => user.userId !== this.currentUserId);
+        console.log(this.users);
         }
       );
   }
 
   addNewFollower(followUser) {
-    this.added[followUser.userId] = true;
     this.profileService.addNewFollower(this.currentUser, followUser.userId)
       .then((item) => {
         this.openMessage = true;
@@ -60,4 +57,21 @@ export class UsersComponent implements OnInit {
         console.log(err);
       });
   }
+
+  getButtonText(user) {
+    return user.isFriendOfCurrentUser ? 'Your friend' : 'Add friend';
+  }
+
+  disableButton(user) {
+    return user.isFriendOfCurrentUser;
+  }
+  checkIfUserIsFriendOfCurrentuser(currentUserId, userId) {
+    return this.profileService.checkIfUserIsFriendOfCurrentuser(currentUserId, userId)
+      .subscribe( item => {
+        console.log(item.payload.val().includes(userId));
+        return item.payload.val().includes(userId);
+        }
+      );
+  }
+
 }

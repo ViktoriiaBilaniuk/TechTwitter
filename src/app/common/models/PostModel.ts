@@ -5,4 +5,5 @@ export class PostModel {
   day: number;
   month: string;
   hour: string;
+  image: any;
 }

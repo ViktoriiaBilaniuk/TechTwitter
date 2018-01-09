@@ -19,11 +19,33 @@ $iphone8Plus-width: 414px;
     background-color: white;
     padding: 20px;
     margin: 20px 0px;
+    .image {
+      img{
+        width: 100%;
+      }
+      .close{
+        position: absolute;
+        color: black;
+        width: auto;
+        right: 0;
+        margin: 5px;
+        transform: rotate(45deg);
+        color: rgba(63, 81, 181, 0.588235);
+      }
+    }
+    i{
+      text-align: right;
+      margin-right: 14px;
+      color: rgba(63, 81, 181, 0.588235);
+      width: 99%;
+      &:hover {
+        cursor: pointer;
+      }
+      input{
+        display: none;
+      }
+    }
   }
 }
 
-@media screen and (max-width: $ipadPro-width) {
-
-
-}
 
