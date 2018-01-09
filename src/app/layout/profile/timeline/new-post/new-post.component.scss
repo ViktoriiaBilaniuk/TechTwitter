@@ -2,8 +2,13 @@ $blue: #3f51b5;
 $light-blue: #e2e5f4;
 $blue-trans: rgba(63, 81, 181, 0.15);
 
+$ipadPro-width: 1024px;
+$ipad-width: 768px;
+$iphoneX-width: 375px;
+$iphone8Plus-width: 414px;
+
 .body{
-  margin: 20px;
+  margin: 20px 0px;
   margin-bottom: 0px;
   .new_post{
     background-color: $blue-trans;
@@ -13,6 +18,12 @@ $blue-trans: rgba(63, 81, 181, 0.15);
     width: 95%;
     background-color: white;
     padding: 20px;
-    margin: 20px;
+    margin: 20px 0px;
   }
 }
+
+@media screen and (max-width: $ipadPro-width) {
+
+
+}
+

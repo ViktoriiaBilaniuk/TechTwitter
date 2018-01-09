@@ -3,6 +3,12 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
+$ipadPro-width: 1024px;
+$ipad-width: 768px;
+$iphoneX-width: 375px;
+$iphone8Plus-width: 414px;
+
+
 .auth{
   width: 30%;
   text-align: center;
@@ -68,5 +74,37 @@ $light-blue: #e2e5f4;
   }
 }
 
+@media screen and (max-width: $ipadPro-width) {
+  .auth{
+    width: 58%;
+  }
+}
+
+@media screen and (max-width: $iphone8Plus-width) {
+  .auth{
+    width: 100%;
+    padding: 10px;
+    .wrapper {
+      .top {
+        .login {
+          font-size: 16px;
+        }
+      }
+      form {
+        mat-form-field {
+          font-size: 14px;
+        }
+      }
+      .register-link{
+        p{
+          font-size: 12px;
+        }
+        a{
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
 
 

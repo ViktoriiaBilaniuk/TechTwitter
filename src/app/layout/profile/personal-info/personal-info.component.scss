@@ -3,8 +3,15 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
+$ipadPro-width: 1024px;
+$ipad-width: 768px;
+$iphoneX-width: 375px;
+$iphone8Plus-width: 414px;
+
+
+
 .personal{
-  width: 100vw;
+  width: 100%;
   .photo_name{
     .photo{
       background-color: rgba(176, 179, 195, 0.4117647058823529);
@@ -41,5 +48,12 @@ $light-blue: #e2e5f4;
     margin: 0 auto;
     padding-top: 20px;
     font-size: 20px;
+  }
+}
+
+
+@media screen and (max-width: $ipadPro-width) {
+  .personal{
+    width: 100vw;
   }
 }
