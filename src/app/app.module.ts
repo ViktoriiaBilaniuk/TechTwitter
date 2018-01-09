@@ -8,7 +8,7 @@ import { FriendsComponent } from './layout/profile/friends/friends.component';
 import { NewPostComponent } from './layout/profile/timeline/new-post/new-post.component';
 import { FriendsItemComponent } from './layout/profile/friends/friends-item/friends-item.component';
 import { UserProfileComponent } from './layout/user-profile/user-profile.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
@@ -74,8 +74,7 @@ import {FilterPipe} from './layout/users/filter.pipe';
     MatDialogModule,
     MatListModule,
     MatGridListModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule
+    MatAutocompleteModule
   ],
   providers: [AuthService, AuthGuard, ProfileService],
   bootstrap: [AppComponent]

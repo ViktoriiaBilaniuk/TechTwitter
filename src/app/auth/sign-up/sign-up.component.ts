@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  user = new UserModel;
+  user = new UserModel();
   disable = true;
 
 
@@ -21,6 +21,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp(form) {
+    console.log(this.user, form.value)
     if (form.valid) {
       console.log('valid');
     } else {
@@ -51,3 +52,5 @@ export class SignUpComponent implements OnInit {
     this.user.email = this.user.password = this.user.firstName = this.user.lastName = '';
   }
 }
+
+
