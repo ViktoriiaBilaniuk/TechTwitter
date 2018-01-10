@@ -13,7 +13,7 @@
       <div class="list">
         <mat-card *ngFor="let item of users | filter : searchText"  class="user">
           <div class="personal-info">
-            <div class="image"  [routerLink]="['/user', item.userId]">
+            <div class="image"  [routerLink]="['/user', item.userId, item.isFriendOfCurrentUser]">
               <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
             </div>
             <div class="name">
