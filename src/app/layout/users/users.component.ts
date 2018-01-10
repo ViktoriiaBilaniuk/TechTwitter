@@ -28,13 +28,12 @@ export class UsersComponent implements OnInit {
       .subscribe( (users) => {
           this.users = users.map(user => {
             return {
-              isFriendOfCurrentUser: this.checkIfUserIsFriendOfCurrentuser(this.currentUser.userId, user.key),
+              isFriendOfCurrentUser: this.isFallowerOfCurrentUser(this.currentUser, user.key),
               userId: user.key,
               ...user.payload.val()
             };
           })
             .filter(user => user.userId !== this.currentUserId);
-        console.log(this.users);
         }
       );
   }
@@ -61,13 +60,9 @@ export class UsersComponent implements OnInit {
   disableButton(user) {
     return user.isFriendOfCurrentUser;
   }
-  checkIfUserIsFriendOfCurrentuser(currentUserId, userId) {
-    return this.profileService.checkIfUserIsFriendOfCurrentuser(currentUserId, userId)
-      .subscribe( item => {
-        console.log(item.payload.val().includes(userId));
-        return item.payload.val().includes(userId);
-        }
-      );
+
+  isFallowerOfCurrentUser(currentUser, userId) {
+    return currentUser.followers.includes(userId);
   }
 
 }

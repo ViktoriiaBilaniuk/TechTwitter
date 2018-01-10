@@ -10,25 +10,6 @@
     </div>
 
     <div class="user_list">
-      <!--<mat-grid-list cols="3" md-cols-sm="1" md-cols-md="2" rowHeight="3:1" gutterSize="20px">
-        <mat-grid-tile *ngFor="let item of users | filter : searchText" class="user">
-          <div class="personal-info">
-            <div class="image"  [routerLink]="['/user', item.userId]">
-              <p>{{item.firstName.substring(0,1)}}{{item.lastName.substring(0,1)}}</p>
-            </div>
-            <p>{{item.firstName + ' ' + item.lastName}}</p>
-          </div>
-          <button
-            mat-raised-button
-            color="primary"
-            class="follow"
-            [disabled]="added[item.id]"
-            (click)="addNewFollower(item)">
-            {{buttonText}}
-          </button>
-        </mat-grid-tile>
-      </mat-grid-list>-->
-
       <div class="list">
         <mat-card *ngFor="let item of users | filter : searchText"  class="user">
           <div class="personal-info">

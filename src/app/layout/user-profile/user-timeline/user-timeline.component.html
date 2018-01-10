@@ -2,7 +2,7 @@
   <mat-card class="dont-have-posts" *ngIf="noPosts">
     <p>{{user.firstName}} don`t have posts yet...</p>
   </mat-card>
-  <div class="posts"  *ngFor="let item of postsOfCurrentUser">
+  <div class="posts"  *ngFor="let item of postsOfCurrentUser | reverse">
     <mat-card>
       <div class="user_info">
         <div class="image">
