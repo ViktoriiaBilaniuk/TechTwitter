@@ -62,7 +62,10 @@ export class UsersComponent implements OnInit {
   }
 
   isFallowerOfCurrentUser(currentUser, userId) {
-    return currentUser.followers.includes(userId);
+    if(currentUser.followers) {
+      return currentUser.followers.includes(userId);
+    } else {
+      return false;
+    }
   }
-
 }

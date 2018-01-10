@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {UserModel} from '../../../../common/models/UserModel';
 import {Observable} from 'rxjs/Observable';
+import {forEach} from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -38,14 +39,17 @@ export class FriendsItemComponent implements OnInit {
   openConfirmDialog() {
     this.openConfirmWindow = !this.openConfirmWindow;
   }
+
   removeFriend() {
     this.profileService.removeFriend(this.currentUserId, this.indexOfRemovFriend)
-      .then((item) => {
-         console.log('friend removed');
+      .then(() => {
+        console.log('friend removed');
       })
       .catch((err) => {
         console.log(err);
       });
+    this.currentUser.followers.splice(this.indexOfRemovFriend,1);
+    console.log(this.currentUser.followers);
     this.openConfirmDialog();
   }
 
