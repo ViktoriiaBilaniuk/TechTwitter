@@ -5,4 +5,5 @@ export class UserModel {
   email: string;
   password: string;
   followers: string[];
+  photo: any;
 }

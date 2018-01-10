@@ -3,6 +3,29 @@ $white-trans: rgba(255, 255, 255, 0.66);
 $blue: #3f51b5;
 $light-blue: #e2e5f4;
 
+.blur {
+  position: fixed;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.69);
+}
+
+.friend-added-message{
+  color: $light-blue;
+  background-color: $blue;
+  width: 20%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-top: 15%;
+  position: absolute;
+  z-index: 10;
+}
+
 .personal{
   .photo_name{
     .photo{

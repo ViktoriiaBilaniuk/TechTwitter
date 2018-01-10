@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../common/services/auth.service';
 import {UserModel} from '../../common/models/UserModel';
-import {User} from 'firebase';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,26 +10,16 @@ import {Router} from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
   user = new UserModel();
-  disable = true;
-
 
   constructor(public authService: AuthService, public router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  signUp(form) {
-    console.log(this.user, form.value)
-    if (form.valid) {
-      console.log('valid');
-    } else {
-      console.log('invalid');
-    }
+  signUp() {
     this.authService.signUp(this.user)
       .subscribe(
         res => {
-          console.log(res);
+          console.log('User signuped successfully!');
         },
         err => {
           console.log('Error in post user!');
@@ -38,7 +27,7 @@ export class SignUpComponent implements OnInit {
       );
     this.authService.signUpInFireAuth(this.user.email, this.user.password)
       .then(value => {
-        console.log('User signuped successfully!!', value);
+        console.log('User signuped successfully in fire', value);
         this.authService.success = true;
         setTimeout(() => {
           this.router.navigate(['../login']);

@@ -41,15 +41,7 @@ export class FriendsItemComponent implements OnInit {
   }
 
   removeFriend() {
-    this.profileService.removeFriend(this.currentUserId, this.indexOfRemovFriend)
-      .then(() => {
-        console.log('friend removed');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    this.currentUser.followers.splice(this.indexOfRemovFriend,1);
-    console.log(this.currentUser.followers);
+    this.profileService.removeFriend(this.currentUser, this.currentUserId, this.indexOfRemovFriend);
     this.openConfirmDialog();
   }
 

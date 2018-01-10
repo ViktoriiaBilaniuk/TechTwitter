@@ -12,7 +12,7 @@ import {HttpModule} from '@angular/http';
 import {UserModel} from '../common/models/UserModel';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
 ];
