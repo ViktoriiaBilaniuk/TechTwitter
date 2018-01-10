@@ -15,7 +15,8 @@
       mat-raised-button
       color="primary"
       (click)="addFriend()"
-    >Add friend
+      [disabled]="disableButton()"
+    >{{getButtonText()}}
     </button>
   </div>
 </div>

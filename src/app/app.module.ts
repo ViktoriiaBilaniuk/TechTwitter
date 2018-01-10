@@ -32,6 +32,7 @@ import {ProfileService} from './common/services/profile.service';
 import {UserTimelineComponent} from './layout/user-profile/user-timeline/user-timeline.component';
 import {FilterPipe} from './layout/users/filter.pipe';
 import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
+import {ReversePipe} from './common/reverse.pipe';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
     UsersComponent,
     PersonalInfoComponent,
     UserTimelineComponent,
-    FilterPipe
+    FilterPipe,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

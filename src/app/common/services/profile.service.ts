@@ -4,7 +4,6 @@ import {PostModel} from '../models/PostModel';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {RequestOptions} from '@angular/http';
 
 @Injectable()
 export class ProfileService {
@@ -25,9 +24,6 @@ export class ProfileService {
   getUser(userId) {
     return this.db.object(`users/${userId}`).snapshotChanges();
   }
-  getFollowersOfUsers (userId) {
-    return this.db.object(`users/${userId}/followers`).snapshotChanges();
-  }
   getFriends(friendArray) {
     if (friendArray === undefined) {
       friendArray = [];
@@ -46,7 +42,6 @@ export class ProfileService {
   getAllUsers(): Observable<any> {
     return this.db.list(this.usersUrl).snapshotChanges();
   }
-
   addNewFollower(user, followUserId) {
     const items = this.db.list(this.usersUrl);
     if (user.followers === undefined) {
@@ -58,9 +53,5 @@ export class ProfileService {
   removeFriend(currentUserId, indexOfUser) {
     const itemsRef = this.db.list('/users/' + currentUserId + '/followers');
     return itemsRef.remove('' + indexOfUser);
-  }
-
-  checkIfUserIsFriendOfCurrentuser(currentUserId) {
-    return this.getFollowersOfUsers(currentUserId);
   }
 }

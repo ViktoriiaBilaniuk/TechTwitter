@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'users', component: UsersComponent},
-  { path: 'user/:id', component: UserProfileComponent}
+  { path: 'user/:id', component: UserProfileComponent, data: [{isFriend: true}]}
 ];
 
 @NgModule({

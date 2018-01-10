@@ -15,6 +15,7 @@ export class UserPersonalInfoComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   numberOfPosts: number;
+  isFriendOfCurrentUser: false;
   constructor(public route: ActivatedRoute, public profileService: ProfileService) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class UserPersonalInfoComponent implements OnInit {
           this.user = user.payload.val();
         });
     });
+    this.isFriendOfCurrentUser = this.route.snapshot.data[0]['isFriend'];
   }
   getNumberOfPosts(userId) {
     this.profileService.fetchPosts(userId)
@@ -42,9 +44,15 @@ export class UserPersonalInfoComponent implements OnInit {
   }
 
   addFriend() {
-    console.log(this.currentUser.followers);
-    console.log(this.userId);
     this.profileService.addNewFollower(this.currentUser, this.userId);
+  }
+
+  disableButton() {
+    return this.isFriendOfCurrentUser;
+  }
+
+  getButtonText() {
+    return this.isFriendOfCurrentUser ? 'Your friend' : 'Add friend';
   }
 
 }

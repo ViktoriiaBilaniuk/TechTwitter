@@ -56,6 +56,7 @@ export class NewPostComponent implements OnInit {
         }
       );
     this.currentPost.text = '';
+    this.closeImage();
   }
 
   initCurrentPost() {
