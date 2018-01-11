@@ -38,7 +38,7 @@ export class AuthService {
       'lastName': userModel.lastName,
       'email': userModel.email,
       'followers': [],
-      'photo': 'url("../assets/img/user-icon-placeholder.png")'
+      'photo': ''
     });
   }
   signUpInFireAuth(email: string, password: string) {
