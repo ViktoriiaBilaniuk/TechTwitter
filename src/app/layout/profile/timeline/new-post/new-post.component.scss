@@ -33,16 +33,19 @@ $iphone8Plus-width: 414px;
         color: rgba(63, 81, 181, 0.588235);
       }
     }
-    i{
+    .add-image-icon{
       text-align: right;
-      margin-right: 14px;
-      color: rgba(63, 81, 181, 0.588235);
-      width: 99%;
-      &:hover {
-        cursor: pointer;
-      }
-      input{
-        display: none;
+      width: 100%;
+      i{
+        margin-right: 14px;
+        color: rgba(63, 81, 181, 0.588235);
+        width: 15px;
+        &:hover {
+          cursor: pointer;
+        }
+        input{
+          display: none;
+        }
       }
     }
   }

@@ -15,7 +15,9 @@ export class UserPersonalInfoComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   numberOfPosts: number;
-  isFriendOfCurrentUser: false;
+  isFriendOfCurrentUser: boolean;
+  openMessage = false;
+
   constructor(public route: ActivatedRoute, public profileService: ProfileService) { }
 
   ngOnInit() {
@@ -27,13 +29,13 @@ export class UserPersonalInfoComponent implements OnInit {
       });
     this.sub = this.route.params.subscribe(params => {
       this.userId = params['id'];
+      this.isFriendOfCurrentUser = params['isFriend'];
       this.getNumberOfPosts(this.userId);
       this.profileService.getUser(this.userId)
         .subscribe((user) => {
           this.user = user.payload.val();
         });
     });
-    this.isFriendOfCurrentUser = this.route.snapshot.data[0]['isFriend'];
   }
   getNumberOfPosts(userId) {
     this.profileService.fetchPosts(userId)
@@ -43,8 +45,20 @@ export class UserPersonalInfoComponent implements OnInit {
       );
   }
 
-  addFriend() {
-    this.profileService.addNewFollower(this.currentUser, this.userId);
+  addNewFollower() {
+    this.profileService.addNewFollower(this.currentUser, this.userId)
+      .then((item) => {
+        this.openMessage = true;
+        setTimeout(() => {
+            this.openMessage = false;
+          }, 1000
+        );
+        console.log('friend added!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    this.isFriendOfCurrentUser = true;
   }
 
   disableButton() {
@@ -52,7 +66,10 @@ export class UserPersonalInfoComponent implements OnInit {
   }
 
   getButtonText() {
-    return this.isFriendOfCurrentUser ? 'Your friend' : 'Add friend';
+    if (this.isFriendOfCurrentUser === true) {
+      return 'Your friend';
+    } else {
+      return 'Add friend';
+    }
   }
-
 }

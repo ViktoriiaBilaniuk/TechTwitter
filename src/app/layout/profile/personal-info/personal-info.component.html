@@ -1,7 +1,15 @@
 <div class="personal">
   <div class="photo_name">
-    <div class="photo" (click)="file.click()">
-      <input type="file"  #file (change)="uploadPhoto($event)"/>
+    <div
+      class="photo"
+      (click)="file.click()">
+     <!-- [style.background]="'url(' + currentUser.photo +')'">-->
+      <input
+        type="file"
+        name="file"
+        accept="image/*"
+        #file
+        (change)="handleInputChange($event)"/>
     </div>
   </div>
   <div class="name_email">

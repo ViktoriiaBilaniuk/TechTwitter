@@ -1,6 +1,7 @@
+<ng4-loading-spinner> </ng4-loading-spinner>
 <div class="body">
   <mat-card class="dont-have-posts" *ngIf="noPosts">
-    <p>{{user.firstName}} don`t have posts yet...</p>
+    <p>{{user.firstName}} doesn`t have posts yet...</p>
   </mat-card>
   <div class="posts"  *ngFor="let item of postsOfCurrentUser | reverse">
     <mat-card>
@@ -15,6 +16,12 @@
       </div>
       <div class="post">
         <p>{{item.text}}</p>
+        <div
+          *ngIf="item.image != undefined"
+          [ngStyle]="{'background-size':'cover'}"
+          [style.background]="'url('+item.image+')'"
+          class="post-image"
+        ></div>
       </div>
     </mat-card>
   </div>

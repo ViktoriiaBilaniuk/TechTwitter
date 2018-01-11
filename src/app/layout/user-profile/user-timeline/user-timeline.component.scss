@@ -5,6 +5,8 @@ $light-blue: #e2e5f4;
 $gray: rgb(222, 222, 222);
 $blue-trans: rgba(63, 81, 181, 0.15);
 
+$iphone8Plus-width: 414px;
+
 .body{
   margin: 0px 50px;
   margin-top: 60px;
@@ -42,10 +44,32 @@ $blue-trans: rgba(63, 81, 181, 0.15);
         }
       }
       .post{
-        width: 50%;
+        width: 70%;
         p{
           text-align: justify;
           text-indent: 20px;
+        }
+        .post-image{
+          width: 60%;
+          margin: 0 auto;
+          height: 250px;
+          margin-top: 32px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $iphone8Plus-width) {
+  .body {
+    .posts {
+      mat-card {
+        display: block;
+        .user_info {
+          width: 100%;
+        }
+        .post {
+          width: 100%;
         }
       }
     }

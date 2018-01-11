@@ -54,7 +54,11 @@ export class UsersComponent implements OnInit {
   }
 
   getButtonText(user) {
-    return user.isFriendOfCurrentUser ? 'Your friend' : 'Add friend';
+    if (user.isFriendOfCurrentUser === true) {
+      return 'Your friend';
+    } else {
+      return 'Add friend';
+    }
   }
 
   disableButton(user) {
@@ -62,7 +66,10 @@ export class UsersComponent implements OnInit {
   }
 
   isFallowerOfCurrentUser(currentUser, userId) {
-    return currentUser.followers.includes(userId);
+    if (currentUser.followers) {
+      return currentUser.followers.includes(userId);
+    } else {
+      return false;
+    }
   }
-
 }

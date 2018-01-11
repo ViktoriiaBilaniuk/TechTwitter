@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +19,5 @@ export class HeaderComponent implements OnInit {
   openConfirmDialog() {
     this.openConfirmWindow = !this.openConfirmWindow;
   }
-
-
 }
 

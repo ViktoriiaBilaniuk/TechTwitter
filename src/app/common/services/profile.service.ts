@@ -21,9 +21,11 @@ export class ProfileService {
   getFriend(friendId) {
      return this.db.object(`users/${friendId}`).snapshotChanges();
   }
+
   getUser(userId) {
     return this.db.object(`users/${userId}`).snapshotChanges();
   }
+
   getFriends(friendArray) {
     if (friendArray === undefined) {
       friendArray = [];
@@ -32,13 +34,11 @@ export class ProfileService {
     friendArray.forEach((id) => {
       this.getFriend(id)
         .subscribe((item) => {
-          item.payload.val()['userId'] = item.payload.key;
           friends.push(item.payload.val());
         });
     });
     return friends;
   }
-
   getAllUsers(): Observable<any> {
     return this.db.list(this.usersUrl).snapshotChanges();
   }
@@ -50,8 +50,14 @@ export class ProfileService {
     user.followers.push(followUserId);
     return items.update(user.userId, { followers : user.followers});
   }
-  removeFriend(currentUserId, indexOfUser) {
-    const itemsRef = this.db.list('/users/' + currentUserId + '/followers');
-    return itemsRef.remove('' + indexOfUser);
+
+  removeFriend(currentUser, currentUserId, indexOfUser) {
+    const items = this.db.list(this.usersUrl);
+    currentUser.followers.splice(indexOfUser,1);
+    items.update(currentUserId, { followers : currentUser.followers});
+  }
+  updateProfilePhoto(currentUserId, photo) {
+    const ref = this.db.object(`users/${currentUserId}`);
+    return ref.update({ photo : photo});
   }
 }

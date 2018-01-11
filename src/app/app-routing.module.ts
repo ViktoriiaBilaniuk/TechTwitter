@@ -6,14 +6,14 @@ import {AuthGuard} from './auth/auth.guard';
 import {ProfileComponent} from './layout/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full'},
+  { path: '', redirectTo: 'auth', pathMatch: 'full'},
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   {
     path: 'profile', component: ProfileComponent,
     canActivate: [AuthGuard]
   },
   { path: 'users', component: UsersComponent},
-  { path: 'user/:id', component: UserProfileComponent, data: [{isFriend: true}]}
+  { path: 'user/:id/:isFriend', component: UserProfileComponent, data: [{isFriend: true}]}
 ];
 
 @NgModule({

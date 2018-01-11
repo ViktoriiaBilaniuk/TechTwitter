@@ -14,15 +14,13 @@ export class NewPostComponent implements OnInit {
   currentUserId: any;
   currentUser: UserModel;
 
-  ///////////
+  /* for image upload */
 
   iconColor = '#ccc';
   overlayColor = 'rgba(255,255,255,0.5)';
   loaded = false;
   imageLoaded = false;
   imageSrc = '';
-
-  /////
 
   constructor(public profileService: ProfileService, private http: HttpClient) {
   }
@@ -109,8 +107,6 @@ export class NewPostComponent implements OnInit {
     const n = month[d.getMonth()];
     return n;
   }
-
-
 
   /*work with image upload*/
 

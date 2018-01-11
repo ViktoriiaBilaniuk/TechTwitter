@@ -1,3 +1,5 @@
+<div *ngIf="openMessage" class="blur"></div>
+<mat-card *ngIf="openMessage" class="friend-added-message">Friend added!</mat-card>
 <div class="personal">
   <div class="photo_name">
     <div class="photo"></div>
@@ -14,7 +16,7 @@
     <button
       mat-raised-button
       color="primary"
-      (click)="addFriend()"
+      (click)="addNewFollower()"
       [disabled]="disableButton()"
     >{{getButtonText()}}
     </button>
