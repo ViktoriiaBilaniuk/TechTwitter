@@ -6,6 +6,8 @@ $gray: rgb(222, 222, 222);
 $blue-trans: rgba(63, 81, 181, 0.15);
 
 $iphone8Plus-width: 414px;
+$ipad-width: 768px;
+$md-width: 640px;
 
 .body{
   margin: 0px 50px;
@@ -60,8 +62,9 @@ $iphone8Plus-width: 414px;
   }
 }
 
-@media screen and (max-width: $iphone8Plus-width) {
+@media screen and (max-width: $md-width) {
   .body {
+    margin: 0px;
     .posts {
       mat-card {
         display: block;
@@ -70,6 +73,22 @@ $iphone8Plus-width: 414px;
         }
         .post {
           width: 100%;
+          .post-image {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $ipad-width) {
+  .body {
+    .posts {
+      mat-card {
+        .post {
+          .post-image {
+            width: 100%;
+          }
         }
       }
     }
