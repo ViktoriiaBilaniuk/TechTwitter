@@ -17,7 +17,7 @@
       <div class="post">
         <p>{{item.text}}</p>
         <div
-          *ngIf="item.image != undefined"
+          *ngIf="item.image !== ''"
           [ngStyle]="{'background-size':'cover'}"
           [style.background]="'url('+item.image+')'"
           class="post-image"
