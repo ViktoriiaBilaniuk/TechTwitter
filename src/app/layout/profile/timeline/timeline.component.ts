@@ -37,7 +37,7 @@ export class TimelineComponent implements OnInit {
         } else {
           this.noPosts = false;
         }
-        this.spinnerService.hide();
       });
+    this.spinnerService.hide();
   }
 }
