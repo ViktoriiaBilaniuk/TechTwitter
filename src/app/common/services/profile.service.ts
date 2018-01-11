@@ -4,7 +4,6 @@ import {PostModel} from '../models/PostModel';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class ProfileService {

@@ -28,7 +28,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getPosts() {
-    // this.spinnerService.show();
+    this.spinnerService.show();
     this.profileService.fetchPosts(this.currentUser.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());

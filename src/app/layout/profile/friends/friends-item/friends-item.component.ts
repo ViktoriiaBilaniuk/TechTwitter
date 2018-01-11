@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../../../common/services/profile.service';
 import {UserModel} from '../../../../common/models/UserModel';
-import {Observable} from 'rxjs/Observable';
-import {forEach} from '@angular/router/src/utils/collection';
-
 
 @Component({
   selector: 'app-friends-item',

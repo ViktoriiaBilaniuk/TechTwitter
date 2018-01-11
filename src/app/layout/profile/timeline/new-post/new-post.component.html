@@ -1,4 +1,3 @@
-
 <div class="body">
   <div class="new_post">
     <mat-form-field class="example-full-width">
@@ -22,11 +21,17 @@
           [class.loaded]="imageLoaded"/>
       </div>
       <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-      <i class="material-icons" (click)="file.click()">
-        add_circle
-        <input #file type="file" name="file" accept="image/*"
-               (change)="handleInputChange($event)">
-      </i>
+      <div class="add-image-icon">
+        <i class="material-icons" (click)="file.click()">
+          add_circle
+          <input
+            #file
+            type="file"
+            name="file"
+            accept="image/*"
+            (change)="handleInputChange($event)">
+        </i>
+      </div>
     </mat-form-field>
     <button
       mat-fab

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../common/services/auth.service';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {UserModel} from '../../common/models/UserModel';
-import {Observable} from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
-import {User} from 'firebase';
 
 @Component({
   selector: 'app-login',

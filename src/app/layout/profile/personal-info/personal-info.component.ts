@@ -13,10 +13,9 @@ export class PersonalInfoComponent implements OnInit {
   image: ImageBitmap;
   currentUserId: any;
   numberOfPosts: any;
-  //////
+  /* for image upload */
   loaded = false;
   imageSrc = '';
-  /////
 
   constructor(public profileService: ProfileService, public authService: AuthService) {}
 
