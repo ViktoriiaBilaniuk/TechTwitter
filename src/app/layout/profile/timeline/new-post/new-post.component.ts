@@ -135,10 +135,11 @@ export class NewPostComponent implements OnInit {
   }
 
   getImage() {
+    console.log(this.imageSrc);
     return this.imageSrc;
   }
 
   closeImage() {
-    this.imageSrc = undefined;
+    this.imageSrc = '';
   }
 }

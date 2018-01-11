@@ -15,7 +15,7 @@ export class UserPersonalInfoComponent implements OnInit {
   currentUser = new UserModel;
   currentUserId: any;
   numberOfPosts: number;
-  isFriendOfCurrentUser: boolean;
+  isFriendOfCurrentUser: any;
   openMessage = false;
 
   constructor(public route: ActivatedRoute, public profileService: ProfileService) { }
@@ -30,6 +30,7 @@ export class UserPersonalInfoComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.userId = params['id'];
       this.isFriendOfCurrentUser = params['isFriend'];
+      this.getButtonText();
       this.getNumberOfPosts(this.userId);
       this.profileService.getUser(this.userId)
         .subscribe((user) => {
@@ -66,7 +67,7 @@ export class UserPersonalInfoComponent implements OnInit {
   }
 
   getButtonText() {
-    if (this.isFriendOfCurrentUser === true) {
+    if (this.isFriendOfCurrentUser) {
       return 'Your friend';
     } else {
       return 'Add friend';

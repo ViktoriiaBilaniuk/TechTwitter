@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('CurrentUser')) {
       localStorage.removeItem('CurrentUser');
     }
+    if (localStorage.getItem('CurrentUserId')) {
+      localStorage.removeItem('CurrentUserId');
+    }
   }
 
   logIn() {

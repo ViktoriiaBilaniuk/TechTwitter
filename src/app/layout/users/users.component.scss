@@ -7,6 +7,7 @@ $ipadPro-width: 1024px;
 $ipad-width: 768px;
 $iphoneX-width: 375px;
 $iphone8Plus-width: 414px;
+$md-width: 630px;
 
 .blur {
   position: fixed;
@@ -101,7 +102,7 @@ $iphone8Plus-width: 414px;
     .user_list{
       .list {
         mat-card {
-          width: 37%;
+          width: 43%;
         }
       }
     }
@@ -133,6 +134,18 @@ $iphone8Plus-width: 414px;
           width: 80%;
           margin: 0px;
           margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $md-width) {
+  .body{
+    .user_list{
+      .list {
+        mat-card {
+          width: 80%;
         }
       }
     }
