@@ -5,7 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {AngularFireModule} from 'angularfire2';
-import {environment} from './environments/environment';
+import {environment} from '../common/environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
