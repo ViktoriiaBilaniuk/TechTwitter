@@ -8,7 +8,6 @@
         <input matInput [(ngModel)]="searchText" placeholder="Search your friend...">
       </mat-form-field>
     </div>
-
     <div class="user_list">
       <div class="list">
         <mat-card *ngFor="let item of users | filter : searchText"  class="user">

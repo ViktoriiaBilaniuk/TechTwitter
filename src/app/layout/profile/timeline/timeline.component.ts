@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../../../common/services/profile.service';
 import {PostModel} from '../../../common/models/PostModel';
 import {UserModel} from '../../../common/models/UserModel';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-timeline',
@@ -14,7 +15,7 @@ export class TimelineComponent implements OnInit {
   currentUserId: any;
   noPosts = false;
 
-  constructor(public profileService: ProfileService) {}
+  constructor(public profileService: ProfileService, private spinnerService: Ng4LoadingSpinnerService) {}
 
   ngOnInit() {
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
@@ -27,6 +28,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getPosts() {
+    this.spinnerService.show();
     this.profileService.fetchPosts(this.currentUser.userId)
       .subscribe((posts) => {
         this.postsOfCurrentUser = posts.map((post) => post.payload.val());
@@ -35,6 +37,7 @@ export class TimelineComponent implements OnInit {
         } else {
           this.noPosts = false;
         }
+        this.spinnerService.hide();
       });
   }
 }

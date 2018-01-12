@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../common/services/auth.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
@@ -9,9 +9,10 @@ import {UserModel} from '../../common/models/UserModel';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
   user = new UserModel;
   currentUser: UserModel;
+  user$: any;
 
   constructor(public authService: AuthService, public router: Router, public http: HttpClient) { }
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
       .then(value => {
         this.authService.success = true;
         console.log('User logined successfully!');
-        this.authService.fetchUser(value.email)
+        this.user$ = this.authService.fetchUser(value.email)
           .subscribe((user) => {
             this.currentUser = user[0].payload.val();
             this.currentUser.userId = user[0].payload.key;
@@ -50,5 +51,9 @@ export class LoginComponent implements OnInit {
     this.user.email = this.user.password = '';
   }
 
-
+  ngOnDestroy() {
+    if (this.user$) {
+      this.user$.unsubscribe();
+    }
+  }
 }

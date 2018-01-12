@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProfileService} from '../../common/services/profile.service';
 import {UserModel} from '../../common/models/UserModel';
 
@@ -25,7 +25,6 @@ export class UsersComponent implements OnInit {
 
     this.profileService.getAllUsers()
       .subscribe( (users) => {
-
           this.users = users.map(user => {
             return {
               isFriendOfCurrentUser: this.isFallowerOfCurrentUser(this.currentUser, user.key),
