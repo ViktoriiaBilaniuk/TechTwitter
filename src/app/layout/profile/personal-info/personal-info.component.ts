@@ -65,7 +65,7 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   getImageUrl() {
-    const fileUrl = this.currentUser.photo === '' ? 'assets/img/user-icon-placeholder.png' : 'url(' + this.currentUser.photo + ')';
+    const fileUrl = this.currentUser.photo? 'url(' + this.currentUser.photo + ')' : 'assets/img/user-icon-placeholder.png';
     return  fileUrl;
   }
 }
