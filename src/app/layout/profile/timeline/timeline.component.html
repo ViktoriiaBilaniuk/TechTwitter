@@ -19,8 +19,7 @@
         <p>{{item.text}}</p>
         <div
           *ngIf="item.image !== ''"
-          [ngStyle]="{'background-size':'cover'}"
-          [style.background]="'url('+item.image+')'"
+          [style.backgroundImage]="'url('+item.image+')'"
           class="post-image"
         ></div>
       </div>

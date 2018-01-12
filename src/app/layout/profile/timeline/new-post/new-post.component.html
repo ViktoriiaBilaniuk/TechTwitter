@@ -1,43 +1,47 @@
 <div class="body">
   <div class="new_post">
-    <mat-form-field class="example-full-width">
-      <textarea
-        matInput
-        #message
-        maxlength="256"
-        [(ngModel)]="currentPost.text"
-        placeholder="Any news?">
-      </textarea>
-      <div *ngIf="imageSrc" class="image">
-        <i
-          class="material-icons close"
-          (click)="closeImage()"
-        >
-          add_circle
-        </i>
-        <img
-          [src]="imageSrc"
-          (load)="handleImageLoad()"
-          [class.loaded]="imageLoaded"/>
-      </div>
-      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-      <div class="add-image-icon">
-        <i class="material-icons" (click)="file.click()">
-          add_circle
-          <input
-            #file
-            type="file"
-            name="file"
-            accept="image/*"
-            (change)="handleInputChange($event)">
-        </i>
-      </div>
-    </mat-form-field>
-    <button
-      mat-fab
-      color="primary"
-      (click)="postText()"
-    >Post</button>
+    <form (ngSubmit)="postText()">
+      <mat-form-field class="example-full-width">
+        <textarea
+          matInput
+          name="post"
+          #message
+          maxlength="256"
+          [(ngModel)]="currentPost.text"
+          required
+          placeholder="Any news?">
+        </textarea>
+        <div *ngIf="imageSrc" class="image">
+          <i
+            class="material-icons close"
+            (click)="closeImage()"
+          >
+            add_circle
+          </i>
+          <img
+            [src]="imageSrc"
+            (load)="handleImageLoad()"
+            [class.loaded]="imageLoaded"/>
+        </div>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        <div class="add-image-icon">
+          <i class="material-icons" (click)="file.click()">
+            add_circle
+            <input
+              #file
+              type="file"
+              name="file"
+              accept="image/*"
+              (change)="handleInputChange($event)">
+          </i>
+        </div>
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-fab
+        color="primary"
+      >Post</button>
+    </form>
   </div>
 </div>
 
