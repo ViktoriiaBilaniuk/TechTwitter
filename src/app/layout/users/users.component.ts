@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../common/services/profile.service';
 import {UserModel} from '../../common/models/UserModel';
-
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-users',
@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   users: any;
   openMessage = false;
 
-  constructor(public profileService: ProfileService) {}
+  constructor(public profileService: ProfileService, private spinnerService: Ng4LoadingSpinnerService) {}
 
   ngOnInit() {
     this.currentUserId = JSON.parse(localStorage.getItem('CurrentUserId'));
@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
 
     this.profileService.getAllUsers()
       .subscribe( (users) => {
+        this.spinnerService.show();
           this.users = users.map(user => {
             return {
               isFriendOfCurrentUser: this.isFallowerOfCurrentUser(this.currentUser, user.key),
@@ -34,6 +35,7 @@ export class UsersComponent implements OnInit {
             };
           })
             .filter(user => user.userId !== this.currentUserId);
+          this.spinnerService.hide();
         }
       );
   }

@@ -74,7 +74,7 @@ export class UserPersonalInfoComponent implements OnInit {
     }
   }
   getImageUrl() {
-    const fileUrl = this.user.photo === '' ? 'assets/img/user-icon-placeholder.png' : 'url(' + this.user.photo + ')';
+    const fileUrl = this.user.photo ? 'url(' + this.user.photo + ')' : 'assets/img/user-icon-placeholder.png';
     return  fileUrl;
   }
 }
