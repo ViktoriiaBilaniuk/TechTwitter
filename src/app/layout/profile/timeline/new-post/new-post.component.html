@@ -1,6 +1,6 @@
 <div class="body">
   <div class="new_post">
-    <form (ngSubmit)="postText()">
+    <form #postForm="ngForm" (ngSubmit)="postText()">
       <mat-form-field class="example-full-width">
         <textarea
           matInput
@@ -37,6 +37,7 @@
         </div>
       </mat-form-field>
       <button
+        [disabled]="postForm.form.invalid"
         type="submit"
         mat-fab
         color="primary"
