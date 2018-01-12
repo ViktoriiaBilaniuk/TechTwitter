@@ -73,4 +73,8 @@ export class UserPersonalInfoComponent implements OnInit {
       return 'Add friend';
     }
   }
+  getImageUrl() {
+    const fileUrl = this.user.photo === '' ? 'assets/img/user-icon-placeholder.png' : 'url(' + this.user.photo + ')';
+    return  fileUrl;
+  }
 }

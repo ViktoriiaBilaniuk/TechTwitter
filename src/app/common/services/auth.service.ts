@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import {HttpClient} from '@angular/common/http';
 import {UserModel} from '../models/UserModel';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import {environment} from '../../auth/environments/environment';
+import {environment} from '../environments/environment';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
 
@@ -38,7 +38,7 @@ export class AuthService {
       'lastName': userModel.lastName,
       'email': userModel.email,
       'followers': [],
-      'photo': 'url("../assets/img/user-icon-placeholder.png")'
+      'photo': ''
     });
   }
   signUpInFireAuth(email: string, password: string) {

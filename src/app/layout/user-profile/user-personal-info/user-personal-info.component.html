@@ -2,7 +2,10 @@
 <mat-card *ngIf="openMessage" class="friend-added-message">Friend added!</mat-card>
 <div class="personal">
   <div class="photo_name">
-    <div class="photo"></div>
+    <div
+      class="photo"
+      [style.backgroundImage]="getImageUrl()">
+    </div>
   </div>
   <div class="name_email">
     <div class="name">

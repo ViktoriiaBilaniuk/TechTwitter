@@ -53,7 +53,7 @@ export class NewPostComponent implements OnInit {
           console.log('Error occured');
         }
       );
-    this.currentPost.text = '';
+    this.currentPost.text = '\n';
     this.closeImage();
   }
 

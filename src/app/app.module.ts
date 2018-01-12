@@ -18,7 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './common/services/auth.service';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireModule} from 'angularfire2';
-import {environment} from './auth/environments/environment';
+import {environment} from './common/environments/environment';
 import {AuthGuard} from './auth/auth.guard';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {ProfileComponent} from './layout/profile/profile.component';

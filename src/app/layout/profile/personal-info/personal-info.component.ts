@@ -53,6 +53,8 @@ export class PersonalInfoComponent implements OnInit {
   _handleReaderLoaded(e) {
     const reader = e.target;
     this.imageSrc = reader.result;
+    console.log(this.imageSrc);
+    console.log(reader);
     this.loaded = true;
     this.profileService.updateProfilePhoto(this.currentUserId, this.getImage())
       .then(() => console.log('Photo changed!'))
@@ -60,5 +62,10 @@ export class PersonalInfoComponent implements OnInit {
   }
   getImage() {
     return this.imageSrc;
+  }
+
+  getImageUrl() {
+    const fileUrl = this.currentUser.photo === '' ? 'assets/img/user-icon-placeholder.png' : 'url(' + this.currentUser.photo + ')';
+    return  fileUrl;
   }
 }
